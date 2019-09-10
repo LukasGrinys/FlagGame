@@ -10,4 +10,4 @@ At the beginning of each turn, player chooses a card with a flag and makes a gue
 For every correct answer player receives 1 point. After each attempt players take turns.
 After going through all of the 189 cards, player with the most points wins.
 
-Note: Make sure that spelling of your entry is correct (input is not case sensitive).
+Note: Make sure that spelling of your entry is correct (input is not case sensitive). Autocomplete function may help. 
