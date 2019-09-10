@@ -1,4 +1,10 @@
-﻿var countries = [];
+﻿// array with each country ID
+var arrNumbers = [];
+for (let i = 1; i < 51; i++) {
+  arrNumbers.push( i );
+};
+// array with country information
+var countries = [];
 class Country {
   constructor(name, src, dif) {
     this.name = name;
