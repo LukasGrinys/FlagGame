@@ -65,17 +65,17 @@
   align-items: center;
   margin-top: 50px;
 }
-
 .inputs {
   height: 35px;
-  padding: 5px;
+  padding: 5px;;
   text-align: center;
 }
-.inputs > input {
+#guess {
   width: 200px;
   font-family: "Archivo", "Tahoma", sans-serif;
   height: 25px;
   font-size: 18px;
+  border: 1px solid grey;
 }
 .inputs > button {
   height: 25px;
@@ -126,4 +126,36 @@
 }
 .modal button:hover {
   background-color: grey;
+}
+/* Autocomplete */
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #262626;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  top: 100%;
+  left: 0;
+  right: 0;
+  color: black;
+  font-family: "Archivo", "Tahoma";
+  font-size: 18px;
+  opacity: 0.75;
+}
+.autocomplete-items div {
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+  padding: 2px;
+}
+.autocomplete-items div:hover {
+  background-color: #e6fff2;
+  opacity: 1;
+}
+.autocomplete-active {
+  background-color: #e6fff2;
 }
