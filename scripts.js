@@ -1,8 +1,3 @@
-﻿// making an array with countries
-var arrNumbers = [];
-for (let i = 1; i < 51; i++) {
-  arrNumbers.push( i );
-};
 var chat = document.getElementById('demo');
 var opScore = 0;
 var plScore = 0;
