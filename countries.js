@@ -1,6 +1,6 @@
 ﻿// array with each country ID
 var arrNumbers = [];
-for (let i = 1; i < 51; i++) {
+for (let i = 1; i < 61; i++) {
   arrNumbers.push( i );
 };
 // array with country information
