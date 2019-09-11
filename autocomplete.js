@@ -4,7 +4,7 @@
                     "Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Central African Republic","Chad",
                     "Chile","China","Colombia","Democratic Republic of the Congo", "Republic of the Congo","Costa Rica",
                     "Croatia","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic", 
-                    "East Timor","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Eritrea","Estonia",
+                    "East Timor","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia",
                    "Eswatini","Ethiopia","Fiji","Finland"];
 function autocomplete(inp, arr) {
   var currentFocus;
