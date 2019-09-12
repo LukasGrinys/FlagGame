@@ -1,8 +1,3 @@
-﻿// array with each country ID
-var arrNumbers = [];
-for (let i = 1; i < 61; i++) {
-  arrNumbers.push( i );
-};
 // array with country information
 var countries = [];
 class Country {
@@ -73,3 +68,29 @@ countries[57] = new Country("ESWATINI", "flags/57.png", 3);
 countries[58] = new Country("ETHIOPIA", "flags/58.png",3);
 countries[59] = new Country("FIJI", "flags/59.png",3);
 countries[60] = new Country("FINLAND", "flags/60.png",1);
+countries[61] = new Country("FRANCE", "flags/61.png",1);
+countries[62] = new Country("GABON", "flags/62.png",3);
+countries[63] = new Country("GAMBIA", "flags/63.png",3);
+countries[64] = new Country("GEORGIA", "flags/64.png",2);
+countries[65] = new Country("GERMANY", "flags/65.png",1);
+countries[66] = new Country("GHANA", "flags/66.png",2);
+countries[67] = new Country("GREECE", "flags/67.png",1);
+countries[68] = new Country("GRENADA", "flags/68.png",2);
+countries[69] = new Country("GUATEMALA", "flags/69.png",2);
+countries[70] = new Country("GUINEA", "flags/70.png",3);
+countries[71] = new Country("GUINEA BISSAU", "flags/71.png",3);
+countries[72] = new Country("GUYANA", "flags/72.png",3);
+countries[73] = new Country("HAITI", "flags/73.png",3);
+countries[74] = new Country("HONDURAS", "flags/74.png",2);
+countries[75] = new Country("HUNGARY", "flags/75.png",1);
+countries[76] = new Country("ICELAND", "flags/76.png",2);
+countries[77] = new Country("INDIA", "flags/77.png",1);
+countries[78] = new Country("INDONESIA", "flags/78.png",2);
+countries[79] = new Country("IRAN", "flags/79.png",2);
+countries[80] = new Country("IRAQ", "flags/80.png",2);
+
+﻿// array with each country ID
+var arrNumbers = [];
+for (let i = 1; i < countries.length; i++) {
+  arrNumbers.push( i );
+};
