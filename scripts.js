@@ -20,13 +20,13 @@ for (let i = 0; i < 5; i++) {
   arrNumbers.splice(randomNumber, 1);
 };
 }
+startup();
 
 var s1 = document.getElementById('s1'); var s2 = document.getElementById('s2');
 var s3 = document.getElementById('s3'); var s4 = document.getElementById('s4');
 var s5 = document.getElementById('s5'); var s6 = document.getElementById('s6');
 var s7 = document.getElementById('s7'); var s8 = document.getElementById('s8');
 var s9 = document.getElementById('s9'); var s10 = document.getElementById('s10');
-
 var picked = 0;
 s1.onclick = function() { pick(1); }
 s2.onclick = function() { pick(2); }
@@ -36,8 +36,6 @@ s5.onclick = function() { pick(5); }
 
 function play() {
   document.getElementById("modal").style.display = "none";
-  startup();
-  update();
 }
 function pick(a) {
   if (opArr[a-1].name !== "BLANK" && opPick == -1) {
