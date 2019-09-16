@@ -37,6 +37,7 @@ s5.onclick = function() { pick(5); }
 function play() {
   document.getElementById("modal").style.display = "none";
   startup();
+  update();
 }
 function pick(a) {
   if (opArr[a-1].name !== "BLANK" && opPick == -1) {
