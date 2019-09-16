@@ -1,4 +1,5 @@
 var chat = document.getElementById('demo');
+function startup() {
 var opScore = 0;
 var plScore = 0;
 var plHand = [0,1,2,3,4];
@@ -18,6 +19,7 @@ for (let i = 0; i < 5; i++) {
   plArr.push(countries[a]);
   arrNumbers.splice(randomNumber, 1);
 };
+}
 
 var s1 = document.getElementById('s1'); var s2 = document.getElementById('s2');
 var s3 = document.getElementById('s3'); var s4 = document.getElementById('s4');
@@ -34,6 +36,7 @@ s5.onclick = function() { pick(5); }
 
 function play() {
   document.getElementById("modal").style.display = "none";
+  startup();
 }
 function pick(a) {
   if (opArr[a-1].name !== "BLANK" && opPick == -1) {
