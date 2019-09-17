@@ -98,6 +98,17 @@ countries[87] = new Country("JORDAN", "flags/87.png",3);
 countries[88] = new Country("KAZAKHSTAN", "flags/88.png",2);
 countries[89] = new Country("KENYA", "flags/89.png",2);
 countries[90] = new Country("KIRIBATI", "flags/90.png",2);
+countries[91] = new Country("NORTH KOREA", "flags/91.png",2);
+countries[92] = new Country("SOUTH KOREA", "flags/92.png", 1);
+countries[93] = new Country("KUWAIT", "flags/93.png",3);
+countries[94] = new Country("KYRGYZSTAN", "flags/94.png",3);
+countries[95] = new Country("LAOS", "flags/95.png",2);
+countries[96] = new Country("LATVIA", "flags/96.png",2);
+countries[97] = new Country("LEBANON", "flags/97.png",2);
+countries[98] = new Country("LESOTHO", "flags/98.png",3);
+countries[99] = new Country("LIBERIA", "flags/99.png",2);
+countries[100] = new Country("LIBYA", "flags/100.png",3);
+
 ﻿// array with each country ID
 var arrNumbers = [];
 for (let i = 1; i < countries.length; i++) {
