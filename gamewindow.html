@@ -8,12 +8,28 @@
   <div class="modal" id="modal">
     <h1>Flags</h1>
     <p>This game is based on a card game "Flags of the world". Your goal is to guess as many flags as possible.<br><br> To start with, each player receives 5 cards with flags of countries. At the beginning of each turn, player chooses a card with a flag<br> and makes a guess which country owns the flag. For every correct answer player receives 1 point. After each attempt players take turns.<br> After going through all of the 189 cards, player with the most points wins.
-      <br><br> <b>Note:</b> Make sure that spelling of your entry is correct (input is not case sensitive).<br><br>Have fun! </p>
+      <br><br>Have fun! </p>
     <button onclick="play()">Play</button>
   </div>
   <div class="gameroom">
+    <div class="confirmRestart" id="confirmRestart">
+      <p>Are you sure you want to restart?</p>
+      <button onclick="reset();hideConfirmRestart()">Yes</button>
+      <button onclick="hideConfirmRestart()">No</button>
+    </div>
     <div id="score" class="scoreboard">
       <div id="plscore"></div>
+      <div class="toolbar">
+        <div id="restartSlot">
+          <button id="restart" onclick="confirmRestart()" onmouseover="displayRestartText()" onmouseout="hideRestartText()">
+        </button>
+          <p id="restartText">Restart</p>
+        </div>
+        <div id="settingsSlot">
+          <button id="settings" onmouseover="displaySettingsText()" onmouseout="hideSettingsText()"></button>
+          <p id="settingsText">Settings</p>
+        </div>
+      </div>
       <div id="opscore"></div>
     </div>
     <div id="opSlots" class="opSlots">
