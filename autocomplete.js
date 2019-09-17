@@ -8,7 +8,19 @@
                    "Eswatini","Ethiopia","Fiji","Finland", "France","Gabon","Gambia","Georgia","Germany","Ghana","Greece",
                    "Grenada", "Guatemala","Guinea","Guinea-Bissau", "Guyana", "Haiti", "Honduras",
                    "Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Ivory Coast","Jamaica",
-                   "Japan","Jordan", "Kazakhstan", "Kenya", "Kiribati"];
+                   "Japan","Jordan", "Kazakhstan", "Kenya", "Kiribati", "North Korea", "South Korea", "Kuwait", "Kyrgyzstan",
+                   "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya"];
+
+countries[91] = new Country("NORTH KOREA", "flags/91.png",2);
+countries[92] = new Country("SOUTH KOREA", "flags/92.png", 1);
+countries[93] = new Country("KUWAIT", "flags/93.png",3);
+countries[94] = new Country("KYRGYZSTAN", "flags/94.png",3);
+countries[95] = new Country("LAOS", "flags/95.png",2);
+countries[96] = new Country("LATVIA", "flags/96.png",2);
+countries[97] = new Country("LEBANON", "flags/97.png",2);
+countries[98] = new Country("LESOTHO", "flags/98.png",3);
+countries[99] = new Country("LIBERIA", "flags/99.png",2);
+countries[100] = new Country("LIBYA", "flags/100.png",3);
 
 function autocomplete(inp, arr) {
   var currentFocus;
