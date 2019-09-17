@@ -35,11 +35,11 @@
   letter-spacing: -1.5px;
 }
 #plscore {
-  flex: 50%;
+  flex: 33%;
   padding: 12px;
 }
 #opscore {
-  flex: 50%;
+  flex: 33%;
   padding: 12px;
 }
 .opSlots {
@@ -159,4 +159,107 @@
 }
 .autocomplete-active {
   background-color: #e6fff2;
+}
+/* settings */
+.toolbar {
+  flex: 20%;
+  height: 50px;
+  padding: 2.5px 20px;
+}
+#restart {
+  background-image: url('https://i.ibb.co/q0bCTH8/678134-48.png');
+  background-color: rgba(0,0,0,0);
+  border: none;
+  height: 28px;
+  width: 28px;
+  background-size: contain;
+  cursor: pointer;
+  margin: 3px 0;
+  opacity: 0.25;
+  font-size: 10px;
+  color: white;
+  text-indent: -10px;
+  transition-duration: 0.7s;
+}
+#restart:focus {
+  outline: none;
+}
+#restart:hover {
+  opacity: 1;
+  transition-duration: 0.7s;
+}
+#settings {
+  width: 35px;
+  height: 35px;
+  background-image: url('https://i.ibb.co/QPxY1Y1/309079-48.png');
+  background-size: cover;
+  background-color: rgba(0,0,0,0);
+  border: none;
+  opacity: 0.25;
+  margin-top: -2px;
+  transition-duration: 0.7s;
+}
+#settings:hover {
+  opacity: 1;
+  transition-duration: 0.7s;
+  cursor: pointer;
+}
+#restartSlot {
+  float: left;
+  height: 50px;
+  width: 35px;
+  margin-left: 25px;
+}
+#settingsSlot {
+  float: right;
+  height: 50px;
+  width: 35px;
+  margin-right: 25px;
+}
+#restartSlot > p {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: white;
+  margin-top: -3px;
+  margin-left: -6px;
+  opacity: 0;
+  transition-duration: 0.5s;
+}
+#settingsSlot > p {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: white;
+  margin-top: -5px;
+  margin-left: -6px;
+  opacity: 0;
+  transition-duration: 0.5s;
+}
+.confirmRestart {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  overflow: hidden;
+  background-color: rgba(0,0,0,0.85);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 100px;
+  font-size: 25px;
+  font-family: "Archivo", "Tahoma", sans-serif;
+  display: none;
+}
+.confirmRestart button {
+  width: 150px;
+  font-size: 20px;
+  background-color: rgba(0,0,0,0);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition-duration: 0.5s;
+}
+.confirmRestart button:hover {
+  border: 1.5px solid white;
+  border-radius: 2px;
+  transition-duration: 0.5s;
 }
