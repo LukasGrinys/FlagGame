@@ -183,3 +183,51 @@ function gameOver() {
     chat.innerHTML = "It's a tie!<br><br>" + chat.innerHTML;
   }
 }
+
+// restart
+function displayRestartText() {
+  document.getElementById("restartText").style.opacity = 1;
+}
+function hideRestartText() {
+  document.getElementById("restartText").style.opacity = 0;
+}
+function displaySettingsText() {
+  document.getElementById("settingsText").style.opacity = 1;
+}
+function hideSettingsText() {
+  document.getElementById("settingsText").style.opacity = 0;
+}
+function reset() {
+  chat.innerHTML = "Restarting the game<br><br>" + chat.innerHTML;
+  arrNumbers = [];
+  for (let i = 1; i < countries.length; i++) {
+  arrNumbers.push( i );
+  };
+  opScore = 0;
+  plScore = 0;
+  plHand = [0,1,2,3,4];
+  opArr = [0,0,0,0,0];
+  plArr = [0,0,0,0,0];
+  for (let i = 0; i < 5; i++) {
+    let len = arrNumbers.length;
+    let randomNumber = Math.floor(Math.random() * len);
+    let a = arrNumbers[randomNumber];
+    opArr[i] = countries[a];
+    arrNumbers.splice(randomNumber, 1);
+  };
+  for (let i = 0; i < 5; i++) {
+    let len = arrNumbers.length;
+    let randomNumber = Math.floor(Math.random() * len);
+    let a = arrNumbers[randomNumber];
+    plArr[i] = countries[a];
+    arrNumbers.splice(randomNumber, 1);
+  };
+  var opPick = -1;
+  update();
+}
+function confirmRestart() {
+  document.getElementById("confirmRestart").style.display = "block";
+}
+function hideConfirmRestart() {
+    document.getElementById("confirmRestart").style.display = "none";
+}
