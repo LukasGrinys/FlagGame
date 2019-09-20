@@ -1,4 +1,5 @@
 var chat = document.getElementById('demo');
+var deckQuantity = 0; // 0 - full deck ; 1 - medium deck (70 cards); 2 - short deck (30 cards);
 var opScore = 0;
 var plScore = 0;
 var plHand = [0,1,2,3,4];
@@ -32,6 +33,25 @@ s5.onclick = function() { pick(5); }
 
 function play() {
   document.getElementById("modal").style.display = "none";
+}
+function setDeck(a) {
+  deckQuantity = a;
+  if (deckQuantity == 1) {
+    while (arrNumbers.length > 60) {
+    let len = arrNumbers.length;
+    let randomNumber = Math.floor(Math.random() * len);
+    arrNumbers.splice(randomNumber, 1);
+    }
+  };
+  if (deckQuantity == 2) {
+    while (arrNumbers.length > 20) {
+      let len = arrNumbers.length;
+      let randomNumber = Math.floor(Math.random() * len);
+      arrNumbers.splice(randomNumber, 1);
+      };
+  }
+  document.getElementById('cardsremaining').style.opacity = 1;
+  update();
 }
 function pick(a) {
   if (opArr[a-1].name !== "BLANK" && opPick == -1) {
