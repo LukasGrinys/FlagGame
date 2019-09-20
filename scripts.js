@@ -223,6 +223,20 @@ function reset() {
   for (let i = 1; i < countries.length; i++) {
   arrNumbers.push( i );
   };
+  if (deckQuantity == 1) {
+    while (arrNumbers.length > 70) {
+    let len = arrNumbers.length;
+    let randomNumber = Math.floor(Math.random() * len);
+    arrNumbers.splice(randomNumber, 1);
+    }
+  };
+  if (deckQuantity == 2) {
+    while (arrNumbers.length > 30) {
+      let len = arrNumbers.length;
+      let randomNumber = Math.floor(Math.random() * len);
+      arrNumbers.splice(randomNumber, 1);
+    }
+  }
   opScore = 0;
   plScore = 0;
   plHand = [0,1,2,3,4];
