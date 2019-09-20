@@ -10,7 +10,8 @@
                    "Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Ivory Coast","Jamaica",
                    "Japan","Jordan", "Kazakhstan", "Kenya", "Kiribati", "North Korea", "South Korea", "Kuwait", "Kyrgyzstan",
                    "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Luxembourg", "Lithuania", "Madagascar",
-                  "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands"];
+                  "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", 
+                  "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique"];
 var something = "something";
 function autocomplete(inp, arr) {
   var currentFocus;
