@@ -13,9 +13,9 @@
       country owns the flag. For every correct answer player receives 1 point. After each attempt 
       players take turns.<br> After going through all of the 189 cards, player with the most points wins.
       <br><br>Choose a deck to play with: </p>
-    <button onclick="play(); setDeck(0)">Full deck (189 cards)</button>
-    <button onclick="play(); setDeck(1)">Medium deck (70 cards)</button>
-    <button onclick="play(); setDeck(2)">Short deck (30 cards)</button>
+    <button onclick="play(); setDeck(0)">Full (189 cards)</button>
+    <button onclick="play(); setDeck(1)">Medium (70 cards)</button>
+    <button onclick="play(); setDeck(2)">Short (30 cards)</button>
   </div>
   <div class="gameroom">
     <div class="confirmRestart" id="confirmRestart">
@@ -32,7 +32,7 @@
           <p id="restartText">Restart</p>
         </div>
         <div id="settingsSlot">
-          <button id="settings" onmouseover="displaySettingsText()" onmouseout="hideSettingsText()"></button>
+          <button id="settings" onmouseover="displaySettingsText()" onmouseout="hideSettingsText()" onclick="updateTheme(1)"></button>
           <p id="settingsText">Settings</p>
         </div>
       </div>
@@ -46,7 +46,7 @@
       <img id="s5" class="slot" src="">
     </div>
     <div class="center" id="cardsremaining"></div>
-    <div class="playerSlots">
+    <div class="playerSlots" id="playerSlots">
       <img id="s6" class="slot" src="">
       <img id="s7" class="slot" src="">
       <img id="s8" class="slot" src="">

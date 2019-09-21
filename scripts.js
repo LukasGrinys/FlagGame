@@ -125,6 +125,7 @@ function guess() {
   document.getElementById('submit').disabled = "true";
   document.getElementById('guess').disabled = "true";
   document.getElementById("opSlots").style.opacity = 0.25;
+  document.getElementById("playerSlots").style.opacity = 1;
   setTimeout(opGuess, 1000);
 }
 document.getElementById("opSlots").addEventListener('click', highlight);
@@ -136,7 +137,7 @@ function opGuess() {
  let anotherRandomNumber = Math.floor(Math.random() * (plHand.length - 1));
  opPick = plHand[anotherRandomNumber];
  opHighlight();
- var chancesIndex = plArr[opPick].difficulty;
+ var chancesIndex = plArr[opPick].difficulty + difficultyIndex;
  setTimeout(actualGuess, 800);
  function actualGuess() {
    let chances = Math.floor(Math.random() * chancesIndex);
@@ -163,6 +164,7 @@ function opGuess() {
    opHighlight();
    update();
    document.getElementById("opSlots").style.opacity = 1;
+   document.getElementById("playerSlots").style.opacity = 0.25;
   }
  }
 }
@@ -264,4 +266,18 @@ function confirmRestart() {
 }
 function hideConfirmRestart() {
     document.getElementById("confirmRestart").style.display = "none";
+}
+// settings
+var colorTheme = 0; // 0 - light; 1 - dark; 
+var difficultyIndex = 0; // -1 - hard; 0 - medium; 1 - easy;
+// deckquantity defined in the beginning
+
+function updateTheme(a) {
+  colorTheme = a;
+  if (colorTheme == 0) {
+    document.getElementsByTagName("BODY")[0].style.backgroundImage = 'linear-gradient(to right, #006080, #00663d)';
+  };
+  if (colorTheme == 1) {
+    document.getElementsByTagName("BODY")[0].style.backgroundImage = 'linear-gradient(to right, #0d0d0d, #00001a)';
+  };
 }
