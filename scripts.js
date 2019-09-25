@@ -276,8 +276,14 @@ function updateTheme(a) {
   colorTheme = a;
   if (colorTheme == 0) {
     document.getElementsByTagName("BODY")[0].style.backgroundImage = 'linear-gradient(to right, #006080, #00663d)';
+    document.getElementById("plscore").style.color = 'black';
+    document.getElementById("opscore").style.color = 'black';
+    document.getElementById("cardsremaining").style.color = "rgba(0,0,0, .25)";
   };
   if (colorTheme == 1) {
     document.getElementsByTagName("BODY")[0].style.backgroundImage = 'linear-gradient(to right, #0d0d0d, #00001a)';
+    document.getElementById("plscore").style.color = 'white';
+    document.getElementById("opscore").style.color = 'white';
+    document.getElementById("cardsremaining").style.color = "rgba(255,255,255, .25)";
   };
 }
