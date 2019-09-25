@@ -6,12 +6,13 @@
                     "Croatia","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic", 
                     "East Timor","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia",
                    "Eswatini","Ethiopia","Fiji","Finland", "France","Gabon","Gambia","Georgia","Germany","Ghana","Greece",
-                   "Grenada", "Guatemala","Guinea","Guinea-Bissau", "Guyana", "Haiti", "Honduras",
+                   "Grenada", "Guatemala","Guinea","Guinea Bissau", "Guyana", "Haiti", "Honduras",
                    "Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Ivory Coast","Jamaica",
                    "Japan","Jordan", "Kazakhstan", "Kenya", "Kiribati", "North Korea", "South Korea", "Kuwait", "Kyrgyzstan",
                    "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Luxembourg", "Lithuania", "Madagascar",
                   "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", 
-                  "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique"];
+                  "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru",
+                "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia"];
 var something = "something";
 function autocomplete(inp, arr) {
   var currentFocus;

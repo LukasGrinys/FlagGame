@@ -128,6 +128,16 @@ countries[117] = new Country("MONGOLIA", "flags/117.png", 2);
 countries[118] = new Country("MONTENEGRO", "flags/118.png", 2);
 countries[119] = new Country("MOROCCO", "flags/119.png", 2);
 countries[120] = new Country("MOZAMBIQUE", "flags/120.png", 3);
+countries[121] = new Country("MYANMAR", "flags/121.png", 2);
+countries[122] = new Country("NAMIBIA", "flags/122.png", 3);
+countries[123] = new Country("NAURU", "flags/123.png", 3);
+countries[124] = new Country("NEPAL", "flags/124.png", 1);
+countries[125] = new Country("NETHERLANDS", "flags/125.png", 1);
+countries[126] = new Country("NEW ZEALAND", "flags/126.png", 1);
+countries[127] = new Country("NICARAGUA", "flags/127.png", 3);
+countries[128] = new Country("NIGER", "flags/128.png", 2);
+countries[129] = new Country("NIGERIA", "flags/129.png", 2);
+countries[130] = new Country("NORTH MACEDONIA", "flags/130.png", 1);
 
 ﻿// array with each country ID
 var arrNumbers = [];
