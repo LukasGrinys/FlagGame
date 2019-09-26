@@ -18,6 +18,18 @@
     <button onclick="play(); setDeck(2)">Short (30 cards)</button>
   </div>
   <div class="gameroom">
+    <div class="settings-screen">
+      <h1>Settings</h1>
+      <div class="color-room">
+        <p>Change color theme:</p>
+        <div class="color-slot light-slot"></div>
+        <div class="color-slot dark-slot"></div>
+      </div>
+      <div class="difficulty-room">
+        <p>Change difficulty:</p>
+      </div>
+      <div class="exit-btn"></div>
+    </div>
     <div class="confirmRestart" id="confirmRestart">
       <p>Are you sure you want to restart?</p>
       <button onclick="reset();hideConfirmRestart()">Yes</button>

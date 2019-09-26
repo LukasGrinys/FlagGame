@@ -1,26 +1,70 @@
 ﻿body {
  background-image: linear-gradient(to right, #006080, #00663d);
   color: white;
+  font-family: "Archivo", "Tahoma", sans-serif;
 }
 *, *::before, *::after {
   box-sizing: border-box;
 }
 .gameroom {
+  display: block;
   width: 800px;
   height: 415px;
-  float: left;
-  margin-left: 250px;
+  position: relative;
+  margin: 0 auto;
   border-radius: 2px 0 0 2px;
   background-color: rgba(179,217,255,0.15);
 }
-.chat {
+.settings-screen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  background-color: rgba(0,0,0,0.9);
+  text-align: center;
+}
+.color-room {
+  border: 1px solid red;
+  width: 50%;
   float: left;
-  width: 200px;
-  height: 415px;
+}
+.difficulty-room {
+  border: 1px solid red;
+  width: 50%;
+  float: left;
+}
+.settings-screen h1 {
+  font-weight: lighter;
+  width: 100%;
+}
+.color-slot {
+  float: left;
+  width: 25%;
+  height: 50px;
+  margin-right: 50px;
+  margin-left: 45px;
+  border: 2px solid white;
+  border-radius: 8px;
+}
+.color-slot:hover {
+  border: 2px solid #069;
+  cursor: pointer;
+}
+.dark-slot {
+  background-image: linear-gradient(to right, #0d0d0d, #00001a);
+}
+.light-slot {
+  background-image: linear-gradient(to right, #006080, #00663d);
+}
+.chat {
+  display: block;
+  width: 800px;
+  height: 150px;
   border: 1.5px solid white;
+  margin: 0 auto;
   overflow: hidden;
   font-family: "Archivo";
-  background-color: rgba(0, 0, 0, .75);
+  background-color: rgba(0, 0, 0, .8);
   color: white;
   padding: 0 10px;
 }
@@ -107,6 +151,7 @@
 }
 .modal {
   position: absolute;
+  display: none;
   top: 0;
   left: 0;
   z-index: 100;
