@@ -17,21 +17,43 @@
 }
 .settings-screen {
   position: absolute;
+  display: none;
   width: 100%;
   height: 100%;
   z-index: 99;
   background-color: rgba(0,0,0,0.9);
   text-align: center;
 }
+.close-btn {
+  position: absolute;
+  right:0;
+  top:0;
+  padding: 15px;
+  font-size: 2em;
+}
+.close-btn:hover {
+  opacity: 0.5;
+  cursor: pointer;
+  transition: 0.3s;
+}
 .color-room {
-  border: 1px solid red;
   width: 50%;
   float: left;
 }
 .difficulty-room {
-  border: 1px solid red;
   width: 50%;
   float: left;
+}
+.dif-slot {
+  float: left;
+  width: 110px;
+  border: 2px solid white;
+  padding: 15px;
+  font-size: 0.8em;
+  text-align: center;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 4px;
 }
 .settings-screen h1 {
   font-weight: lighter;
@@ -101,7 +123,7 @@
   text-align: center;
   letter-spacing: 2px;
   font-size: 20px;
-  opacity: 0;
+  opacity: 0.75;
 }
 .playerSlots {
   height: 100px;
@@ -151,7 +173,6 @@
 }
 .modal {
   position: absolute;
-  display: none;
   top: 0;
   left: 0;
   z-index: 100;
@@ -192,7 +213,6 @@
   color: black;
   font-family: "Archivo", "Tahoma";
   font-size: 18px;
-  opacity: 0.75;
 }
 .autocomplete-items div {
   cursor: pointer;
@@ -201,8 +221,7 @@
   padding: 2px;
 }
 .autocomplete-items div:hover {
-  background-color: #e6fff2;
-  opacity: 1;
+  background-color: #069;
 }
 .autocomplete-active {
   background-color: #e6fff2;

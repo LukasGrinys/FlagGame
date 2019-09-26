@@ -18,15 +18,19 @@
     <button onclick="play(); setDeck(2)">Short (30 cards)</button>
   </div>
   <div class="gameroom">
-    <div class="settings-screen">
+    <div class="settings-screen" id="settings-room">
       <h1>Settings</h1>
+      <div class="close-btn" id="close-btn">X</div>
       <div class="color-room">
         <p>Change color theme:</p>
-        <div class="color-slot light-slot"></div>
-        <div class="color-slot dark-slot"></div>
+        <div class="color-slot light-slot" id="light-slot" onclick="updateTheme(0)"></div>
+        <div class="color-slot dark-slot" id="dark-slot" onclick="updateTheme(1)"></div>
       </div>
       <div class="difficulty-room">
         <p>Change difficulty:</p>
+        <div class="dif-slot" id="dif-easy" onclick="updateDifficulty(1)">Easy</div>
+        <div class="dif-slot" id="dif-med" onclick="updateDifficulty(0)">Intermediate</div>
+        <div class="dif-slot" id="dif-hard" onclick="updateDifficulty(-1)">Hard</div>
       </div>
       <div class="exit-btn"></div>
     </div>
