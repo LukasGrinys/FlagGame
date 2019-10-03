@@ -21,16 +21,25 @@
     <div class="settings-screen" id="settings-room">
       <h1>Settings</h1>
       <div class="close-btn" id="close-btn">X</div>
-      <div class="color-room">
+      <div class="settings-default">
         <p>Change color theme:</p>
         <div class="color-slot light-slot" id="light-slot" onclick="updateTheme(0)"></div>
         <div class="color-slot dark-slot" id="dark-slot" onclick="updateTheme(1)"></div>
       </div>
-      <div class="difficulty-room">
+      <div class="settings-default">
         <p>Change difficulty:</p>
-        <div class="dif-slot" id="dif-easy" onclick="updateDifficulty(1)">Easy</div>
-        <div class="dif-slot" id="dif-med" onclick="updateDifficulty(0)">Intermediate</div>
-        <div class="dif-slot" id="dif-hard" onclick="updateDifficulty(-1)">Hard</div>
+        <div class="set-slot" id="dif-easy" onclick="updateDifficulty(1)">Easy</div>
+        <div class="set-slot" id="dif-med" onclick="updateDifficulty(0)">Intermediate</div>
+        <div class="set-slot" id="dif-hard" onclick="updateDifficulty(-1)">Hard</div>
+      </div>
+      <div class="settings-default">
+        <p>Change deck size <br><span style="font-size:11px">(game needs to be restarted for changes to initialize)</span>:</p>
+        <div class="set-slot" id="deck-full" onclick="updateDeck(0)">Full deck (189 cards)</div>
+        <div class="set-slot" id="deck-medium" onclick="updateDeck(1)">Medium deck (70 cards)</div>
+        <div class="set-slot" id="deck-short" onclick="updateDeck(2)">Short deck (30 cards)</div>
+      </div>
+      <div class="settings-default">
+        <p>Show the message board:</p>
       </div>
       <div class="exit-btn"></div>
     </div>

@@ -36,20 +36,19 @@
   cursor: pointer;
   transition: 0.3s;
 }
-.color-room {
-  width: 50%;
+.settings-default {
+  width: 400px;
+  height: 160px;
   float: left;
 }
-.difficulty-room {
-  width: 50%;
-  float: left;
-}
-.dif-slot {
+.set-slot {
+  color: white;
+  background-color: rgba(0,0,0,0);
   float: left;
   width: 110px;
   border: 2px solid white;
   padding: 15px;
-  font-size: 0.8em;
+  font-size: 0.7em;
   text-align: center;
   margin: 0 10px;
   cursor: pointer;

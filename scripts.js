@@ -37,6 +37,7 @@ function play() {
 }
 function setDeck(a) {
   deckQuantity = a;
+  updateDeck(a);
   if (deckQuantity == 1) {
     while (arrNumbers.length > 60) {
     let len = arrNumbers.length;
@@ -330,3 +331,31 @@ function updateDifficulty(a) {
   }
 }
 updateDifficulty(0);
+
+function updateDeck(a) {
+  deckQuantity = a;
+  if (deckQuantity == 0) {
+    document.getElementById("deck-full").style.backgroundColor = "white";
+    document.getElementById("deck-full").style.color = "rgba(0,0,0,0.7)";
+    document.getElementById("deck-medium").style.backgroundColor = "rgba(0,0,0,0)";
+    document.getElementById("deck-medium").style.color = "white";
+    document.getElementById("deck-short").style.backgroundColor = "rgba(0,0,0,0)";
+    document.getElementById("deck-short").style.color = "white";
+  }
+  else if (deckQuantity == 1) {
+    document.getElementById("deck-medium").style.backgroundColor = "white";
+    document.getElementById("deck-medium").style.color = "rgba(0,0,0,0.7)";
+    document.getElementById("deck-full").style.backgroundColor = "rgba(0,0,0,0)";
+    document.getElementById("deck-full").style.color = "white";
+    document.getElementById("deck-short").style.backgroundColor = "rgba(0,0,0,0)";
+    document.getElementById("deck-short").style.color = "white";
+  }
+  else if (deckQuantity == 2) {
+    document.getElementById("deck-short").style.backgroundColor = "white";
+    document.getElementById("deck-short").style.color = "rgba(0,0,0,0.7)";
+    document.getElementById("deck-medium").style.backgroundColor = "rgba(0,0,0,0)";
+    document.getElementById("deck-medium").style.color = "white";
+    document.getElementById("deck-full").style.backgroundColor = "rgba(0,0,0,0)";
+    document.getElementById("deck-full").style.color = "white";
+  };
+};
