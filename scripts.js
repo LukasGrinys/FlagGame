@@ -182,6 +182,15 @@ s7.src = plArr[1].source;
 s8.src = plArr[2].source;
 s9.src = plArr[3].source;
 s10.src = plArr[4].source;
+if (messageBoardVisibility == 0) {
+  document.getElementById('chat').style.display = "none";
+  document.getElementById('message-settings').style.backgroundColor = "rgba(0,0,0,0.7)";
+  document.getElementById('message-settings').style.color = "white";
+} else {
+  document.getElementById('chat').style.display = "block";
+  document.getElementById('message-settings').style.backgroundColor = "White";
+  document.getElementById('message-settings').style.color = "rgba(0,0,0,0.7)";
+};
 document.getElementById("plscore").innerHTML = "YOU: " + plScore;
 document.getElementById("opscore").innerHTML = "COMPUTER: " + opScore;
 if (arrNumbers.length > 1) {
@@ -282,7 +291,6 @@ function openSettings() {
   document.getElementById("settings-room").style.display = "block";
 }
 
-
 function updateTheme(a) {
   colorTheme = a;
   if (colorTheme == 0) {
@@ -358,4 +366,12 @@ function updateDeck(a) {
     document.getElementById("deck-full").style.backgroundColor = "rgba(0,0,0,0)";
     document.getElementById("deck-full").style.color = "white";
   };
+};
+var messageBoardVisibility = 1;
+function hideChat() {
+  messageBoardVisibility++;
+  if (messageBoardVisibility > 1) {
+    messageBoardVisibility = 0;
+  };
+  update();
 };

@@ -54,6 +54,10 @@
   cursor: pointer;
   border-radius: 4px;
 }
+.message-settings {
+  font-size: 0.8em;
+  margin: 0 140px;
+}
 .settings-screen h1 {
   font-weight: lighter;
   width: 100%;
