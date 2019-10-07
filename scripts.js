@@ -5,6 +5,9 @@ var plScore = 0;
 var plHand = [0,1,2,3,4];
 var opArr = [];
 var plArr = [];
+retrieveSettings();
+updateTheme(colorTheme);
+updateChatBox();
 
 for (let i = 0; i < 5; i++) {
   let len = arrNumbers.length;
@@ -182,15 +185,6 @@ s7.src = plArr[1].source;
 s8.src = plArr[2].source;
 s9.src = plArr[3].source;
 s10.src = plArr[4].source;
-if (messageBoardVisibility == 0) {
-  document.getElementById('chat').style.display = "none";
-  document.getElementById('message-settings').style.backgroundColor = "rgba(0,0,0,0.7)";
-  document.getElementById('message-settings').style.color = "white";
-} else {
-  document.getElementById('chat').style.display = "block";
-  document.getElementById('message-settings').style.backgroundColor = "White";
-  document.getElementById('message-settings').style.color = "rgba(0,0,0,0.7)";
-};
 document.getElementById("plscore").innerHTML = "YOU: " + plScore;
 document.getElementById("opscore").innerHTML = "COMPUTER: " + opScore;
 if (arrNumbers.length > 1) {
@@ -278,6 +272,7 @@ function confirmRestart() {
 function hideConfirmRestart() {
     document.getElementById("confirmRestart").style.display = "none";
 }
+
 // settings
 var colorTheme = 0; // 0 - light; 1 - dark; 
 var difficultyIndex = 0; // -1 - hard; 0 - medium; 1 - easy;
@@ -285,10 +280,14 @@ var difficultyIndex = 0; // -1 - hard; 0 - medium; 1 - easy;
 document.getElementById("close-btn").addEventListener("click", closeSettings);
 function closeSettings() {
   document.getElementById("settings-room").style.display = "none";
+  storeSettings();
 }
 document.getElementById("settings").addEventListener("click", openSettings);
 function openSettings() {
   document.getElementById("settings-room").style.display = "block";
+  retrieveSettings();
+  updateDifficulty(difficultyIndex);
+  updateChatBox();
 }
 
 function updateTheme(a) {
@@ -373,5 +372,77 @@ function hideChat() {
   if (messageBoardVisibility > 1) {
     messageBoardVisibility = 0;
   };
-  update();
+  updateChatBox();
+};
+function updateChatBox() {
+  if (messageBoardVisibility == 0) {
+    document.getElementById('chat').style.display = "none";
+    document.getElementById('message-settings').style.backgroundColor = "rgba(0,0,0,0.7)";
+    document.getElementById('message-settings').style.color = "white";
+  } else {
+    document.getElementById('chat').style.display = "block";
+    document.getElementById('message-settings').style.backgroundColor = "White";
+    document.getElementById('message-settings').style.color = "rgba(0,0,0,0.7)";
+  };
+};
+
+// storing the settings
+function storeSettings() {
+  if (typeof(Storage) !== "undefined") {
+    // difficulty
+    if (difficultyIndex == 0) {
+      localStorage.setItem('difficultyIndex','medium');
+    }
+    if (difficultyIndex == 1) {
+      localStorage.setItem('difficultyIndex','easy');
+    }
+    if (difficultyIndex == -1) {
+      localStorage.setItem('difficultyIndex','hard');
+    };
+    // message board
+    if (messageBoardVisibility == 1) {
+      localStorage.setItem('showMessageBoard','true');
+   }
+    if (messageBoardVisibility == 0) {
+     localStorage.setItem('showMessageBoard','false');
+    };
+    // theme
+    if (colorTheme == 0) {
+      localStorage.setItem('colorTheme','light');
+    }
+    if (colorTheme == 1) {
+     localStorage.setItem('colorTheme','dark');
+    };
+  };
+};
+// retrieving settings from the local storage
+function retrieveSettings() {
+  if (localStorage.difficultyIndex == 'easy') {
+    difficultyIndex = 1;
+  }
+  if (localStorage.difficultyIndex == 'medium') {
+    difficultyIndex = 0;
+  }
+  if (localStorage.difficultyIndex == 'hard') {
+    difficultyIndex = -1;
+  };
+  if (localStorage.colorTheme == 'light') {
+    colorTheme = 0;
+  }
+  if (localStorage.colorTheme == 'dark') {
+    colorTheme = 1;
+  };
+  if (localStorage.showMessageBoard == 'true') {
+    messageBoardVisibility = 1;
+  }
+  if (localStorage.showMessageBoard == 'false') {
+    messageBoardVisibility = 0;
+  };
+};
+
+// setting up default storage if the value is undefined
+if (localStorage.colorTheme == undefined || localStorage.showMessageBoard == undefined || localStorage.difficultyIndex == undefined ) {
+  localStorage.colorTheme = 'light';
+  localStorage.showMessageBoard = 'true';
+  localStorage.difficultyIndex = 'medium';
 };
