@@ -12,7 +12,9 @@
 "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", 
 "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", 
 "Nigeria", "North Macedonia", "Norway", "Oman", "Pakistan","Palau","Palestine", "Panama", "Papua New Guinea", "Paraguay",
-"Peru", "Philippines"];
+"Peru", "Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saint Kitts and Nevis","Saint Lucia",
+"Saint Vincent and the Grenadines", "Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia",
+"Seychelles","Sierra Leone", "Singapore","Slovakia","Slovenia"];
 
 function autocomplete(inp, arr) {
   var currentFocus;

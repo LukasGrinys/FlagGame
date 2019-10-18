@@ -148,7 +148,26 @@ countries[137] = new Country("PAPUA NEW GUINEA", "flags/137.png", 2);
 countries[138] = new Country("PARAGUAY", "flags/138.png", 3);
 countries[139] = new Country("PERU", "flags/139.png", 2);
 countries[140] = new Country("PHILIPPINES", "flags/140.png", 1);
-
+countries[141] = new Country("POLAND", "flags/141.png", 2);
+countries[142] = new Country("PORTUGAL", "flags/142.png", 1);
+countries[143] = new Country("QATAR", "flags/143.png", 2);
+countries[144] = new Country("ROMANIA", "flags/144.png", 2);
+countries[145] = new Country("RUSSIA", "flags/145.png", 1);
+countries[146] = new Country("RWANDA", "flags/146.png", 3);
+countries[147] = new Country("SAINT KITTS AND NEVIS", "flags/147.png", 3);
+countries[148] = new Country("SAINT LUCIA", "flags/148.png", 3);
+countries[149] = new Country("SAINT VINCENT AND THE GRENADINES", "flags/149.png", 3);
+countries[150] = new Country("SAMOA", "flags/150.png", 2);
+countries[151] = new Country("SAN MARINO", "flags/151.png", 2);
+countries[152] = new Country("SAO TOME AND PRINCIPE", "flags/152.png", 3);
+countries[153] = new Country("SAUDI ARABIA", "flags/153.png", 1);
+countries[154] = new Country("SENEGAL", "flags/154.png", 2);
+countries[155] = new Country("SERBIA", "flags/155.png", 1);
+countries[156] = new Country("SEYCHELLES", "flags/156.png", 2);
+countries[157] = new Country("SIERRA LEONE", "flags/157.png", 3);
+countries[158] = new Country("SINGAPORE", "flags/158.png", 2);
+countries[159] = new Country("SLOVAKIA", "flags/159.png", 1);
+countries[160] = new Country("SLOVENIA", "flags/160.png", 1);
 ﻿// array with each country ID
 var arrNumbers = [];
 for (let i = 1; i < countries.length; i++) {
