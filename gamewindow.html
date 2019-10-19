@@ -11,9 +11,9 @@
       flags as possible.<br><br> To start with, each player receives 5 cards with flags of countries. 
       At the beginning of each turn, player chooses a card with a flag<br> and makes a guess which 
       country owns the flag. For every correct answer player receives 1 point. After each attempt 
-      players take turns.<br> After going through all of the 189 cards, player with the most points wins.
+      players take turns.<br> After going through all of the cards, player with the most points wins.
       <br><br>Choose a deck to play with: </p>
-    <button onclick="play(); setDeck(0)">Full (189 cards)</button>
+    <button onclick="play(); setDeck(0)">Full (195 cards)</button>
     <button onclick="play(); setDeck(1)">Medium (70 cards)</button>
     <button onclick="play(); setDeck(2)">Short (30 cards)</button>
   </div>
@@ -34,7 +34,7 @@
       </div>
       <div class="settings-default">
         <p>Change deck size <br><span style="font-size:11px">(game needs to be restarted for changes to initialize)</span>:</p>
-        <div class="set-slot" id="deck-full" onclick="updateDeck(0)">Full deck (189 cards)</div>
+        <div class="set-slot" id="deck-full" onclick="updateDeck(0)">Full deck (195 cards)</div>
         <div class="set-slot" id="deck-medium" onclick="updateDeck(1)">Medium deck (70 cards)</div>
         <div class="set-slot" id="deck-short" onclick="updateDeck(2)">Short deck (30 cards)</div>
       </div>
@@ -65,19 +65,19 @@
       <div id="opscore"></div>
     </div>
     <div id="opSlots" class="opSlots">
-      <img id="s1" src="" class="slot">
-      <img id="s2" class="slot" src="">
-      <img id="s3" class="slot" src="">
-      <img id="s4" class="slot" src="">
-      <img id="s5" class="slot" src="">
+      <img id="s1" src="flags/00.png" class="slot">
+      <img id="s2" class="slot" src="flags/00.png">
+      <img id="s3" class="slot" src="flags/00.png">
+      <img id="s4" class="slot" src="flags/00.png">
+      <img id="s5" class="slot" src="flags/00.png">
     </div>
     <div class="center" id="cardsremaining"></div>
     <div class="playerSlots" id="playerSlots">
-      <img id="s6" class="slot" src="">
-      <img id="s7" class="slot" src="">
-      <img id="s8" class="slot" src="">
-      <img id="s9" class="slot" src="">
-      <img id="s10" class="slot" src="">
+      <img id="s6" class="slot" src="flags/00.png">
+      <img id="s7" class="slot" src="flags/00.png">
+      <img id="s8" class="slot" src="flags/00.png">
+      <img id="s9" class="slot" src="flags/00.png">
+      <img id="s10" class="slot" src="flags/00.png">
     </div>
     <div class="inputs">
       <div class="autocomplete">
@@ -92,8 +92,8 @@
   <div class="chat" id="chat">
     <p id="demo"></p>
   </div>
-  <script src="countries.js"></script>
-  <script src="scripts.js"></script>
-  <script src="autocomplete.js"></script>
+  <script src="countries.js" async></script>
+  <script src="scripts.js" async></script>
+  <script src="autocomplete.js" async></script>
   </body>
 </html>
