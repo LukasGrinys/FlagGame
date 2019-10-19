@@ -12,3 +12,6 @@ After going through all of the cards from the deck, player with the most points 
 
 TO PLAY:
 > gamewindow.html
+
+Flag list was compiled according to Wikipedia page (2019 October):
+https://en.wikipedia.org/wiki/List_of_sovereign_states
