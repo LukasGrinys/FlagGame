@@ -1,448 +1,497 @@
-var chat = document.getElementById('demo');
-var deckQuantity = 0; // 0 - full deck ; 1 - medium deck (70 cards); 2 - short deck (30 cards);
-var opScore = 0;
-var plScore = 0;
-var plHand = [0,1,2,3,4];
-var opArr = [];
-var plArr = [];
-retrieveSettings();
-updateTheme(colorTheme);
-updateChatBox();
+// DOM Accessing
+const s1 = document.getElementById('s1'); 
+const s2 = document.getElementById('s2');
+const s3 = document.getElementById('s3'); 
+const s4 = document.getElementById('s4');
+const s5 = document.getElementById('s5'); 
+const s6 = document.getElementById('s6');
+const s7 = document.getElementById('s7'); 
+const s8 = document.getElementById('s8');
+const s9 = document.getElementById('s9'); 
+const s10 = document.getElementById('s10');
+const centerMessage = document.getElementById('center-message');
+const answerInput =  document.getElementById('guess');
+const playerSlots = document.getElementById('playerSlots');
+const opponentSlots = document.getElementById('opponentSlots')
+const cardsRemaining = document.getElementById("cardsremaining");
+const submitButton = document.getElementById('submit');
+const difficultyButtons = document.getElementsByClassName('section-buttons')[0];
+const deckSizeButtons = document.getElementsByClassName('section-buttons')[1]
+const playButton = document.getElementsByClassName('play-button')[0];
+const settingsButton = document.getElementsByClassName('settings-button')[0];
+const settingsColorSlots = document.getElementById('color-slots');
+const settingsDifficultySlots = document.getElementById('difficulty-slots');
+const settingsDeckSizeSlots = document.getElementById('deck-size-slots');
 
-for (let i = 0; i < 5; i++) {
-  let len = arrNumbers.length;
-  let randomNumber = Math.floor(Math.random() * len);
-  let a = arrNumbers[randomNumber];
-  opArr.push(countries[a]);
-  arrNumbers.splice(randomNumber, 1);
-};
-for (let i = 0; i < 5; i++) {
-  let len = arrNumbers.length;
-  let randomNumber = Math.floor(Math.random() * len);
-  let a = arrNumbers[randomNumber];
-  plArr.push(countries[a]);
-  arrNumbers.splice(randomNumber, 1);
-};
-var s1 = document.getElementById('s1'); var s2 = document.getElementById('s2');
-var s3 = document.getElementById('s3'); var s4 = document.getElementById('s4');
-var s5 = document.getElementById('s5'); var s6 = document.getElementById('s6');
-var s7 = document.getElementById('s7'); var s8 = document.getElementById('s8');
-var s9 = document.getElementById('s9'); var s10 = document.getElementById('s10');
-var picked = 0;
-s1.onclick = function() { pick(1); }
-s2.onclick = function() { pick(2); }
-s3.onclick = function() { pick(3); }
-s4.onclick = function() { pick(4); }
-s5.onclick = function() { pick(5); }
-
-function play() {
-  document.getElementById("modal").style.display = "none";
-}
-function setDeck(a) {
-  deckQuantity = a;
-  updateDeck(a);
-  if (deckQuantity == 1) {
-    while (arrNumbers.length > 60) {
+// GAME ENGINE
+function setDeck(deckQuantity) {
+  while (arrNumbers.length > deckQuantity) {
     let len = arrNumbers.length;
     let randomNumber = Math.floor(Math.random() * len);
     arrNumbers.splice(randomNumber, 1);
-    }
-  };
-  if (deckQuantity == 2) {
-    while (arrNumbers.length > 20) {
+  }
+  cardsRemaining.style.opacity = 1;
+}
+
+function splitCards() {
+  // Opponent hand
+  for (let i = 0; i < 5; i++) {
       let len = arrNumbers.length;
       let randomNumber = Math.floor(Math.random() * len);
+      let flagId = arrNumbers[randomNumber];
+      oppHand.push(countries[flagId]);
       arrNumbers.splice(randomNumber, 1);
-      };
+  };
+  // Player hand;
+  for (let i = 0; i < 5; i++) {
+    let len = arrNumbers.length;
+    let randomNumber = Math.floor(Math.random() * len);
+    let a = arrNumbers[randomNumber];
+    playerHand.push(countries[a]);
+    arrNumbers.splice(randomNumber, 1);
+  };
+}
+
+// Updating the images of flag elements
+function updateFlagImages() {
+  s1.src = oppHand[0].source;
+  s2.src = oppHand[1].source;
+  s3.src = oppHand[2].source; 
+  s4.src = oppHand[3].source;
+  s5.src = oppHand[4].source;
+  s6.src = playerHand[0].source;
+  s7.src = playerHand[1].source; 
+  s8.src = playerHand[2].source;
+  s9.src = playerHand[3].source;
+  s10.src = playerHand[4].source;
+}
+
+function pickFlag(num) {
+  if (oppHand[num-1].name !== "BLANK") {
+    submitButton.disabled = false;
+    answerInput.disabled = false;
+    playerPickedCard = num;
+    highlight(num);
   }
-  document.getElementById('cardsremaining').style.opacity = 1;
-  update();
 }
-function pick(a) {
-  if (opArr[a-1].name !== "BLANK" && opPick == -1) {
-  document.getElementById("submit").disabled = false;
-  picked = a;
-  console.log(picked);
-  document.getElementById("guess").disabled = false;
-  }
-}
-function highlight() {
-  if (picked == 1) { s1.style.border = "2px solid black" } 
-  else {s1.style.border = "1px solid black"};
-  if (picked == 2) { s2.style.border = "2px solid black" }
-  else {s2.style.border = "1px solid black"};
-  if (picked == 3) { s3.style.border = "2px solid black" }
-  else {s3.style.border = "1px solid black"};
-  if (picked == 4) { s4.style.border = "2px solid black" }
-  else {s4.style.border = "1px solid black"};
-  if (picked == 5) { s5.style.border = "2px solid black" }
-  else {s5.style.border = "1px solid black"};
-}
-function opHighlight() {
-  if (opPick == 0) { s6.style.border = "2px solid black" } 
-  else {s6.style.border = "1px solid black"};
-  if (opPick == 1) { s7.style.border = "2px solid black" }
-  else {s7.style.border = "1px solid black"};
-  if (opPick == 2) { s8.style.border = "2px solid black" }
-  else {s8.style.border = "1px solid black"};
-  if (opPick == 3) { s9.style.border = "2px solid black" }
-  else {s9.style.border = "1px solid black"};
-  if (opPick == 4) { s10.style.border = "2px solid black" }
-  else {s10.style.border = "1px solid black"};
-}
+
 function guess() {
-  let str = document.getElementById('guess').value;
+  let str = answerInput.value;
   if (str == "") {
-    chat.innerHTML = "The answer field is empty, fill in the answer.<br><br>" + chat.innerHTML;
+    showMessage("Please fill the answer");
     return;
   }
-  let answer = String(str).toUpperCase();
-  let msgNumber = Math.floor(Math.random() * 3);
-  let message = "";
-  if (msgNumber == 0) {
-    message = "Correct!<br><br>";
-  }
-  if (msgNumber == 1) {
-    message = "Well done!<br><br>";
-  }
-  if (msgNumber == 2 || msgNumber == 3) {
-    message = "Nice one!<br><br>";
-  }
-  if (answer == opArr[picked - 1].name) {
-    chat.innerHTML = message + chat.innerHTML;
+  let answer = str.toUpperCase();
+  if (answer === oppHand[playerPickedCard - 1].name) {
+    showMessage("Correct!");
     plScore++;
   } else {
-    chat.innerHTML = "Wrong answer. This was the flag of " + opArr[picked - 1].name  + "<br><br>" + chat.innerHTML;
+    showMessage(`Wrong, this was the flag of ${oppHand[playerPickedCard - 1].name}`);
   }
   if (arrNumbers.length > 0) {
     let len = arrNumbers.length;
     let randomNumber = Math.floor(Math.random() * len);
     let a = arrNumbers[randomNumber];
-    opArr[picked - 1] = countries[a];
+    oppHand[playerPickedCard - 1] = countries[a];
     arrNumbers.splice(randomNumber, 1);
   } else {
-    opArr[picked - 1] = countries[0];
+    oppHand[playerPickedCard - 1] = countries[0];
   }
-  update();
-  picked = 0;
+  updateFlagImages();
+  updateScoreboard();
+  playerPickedCard = 0;
   highlight();
-  document.getElementById('guess').value = "";
-  document.getElementById('submit').disabled = "true";
-  document.getElementById('guess').disabled = "true";
-  document.getElementById("opSlots").style.opacity = 0.25;
-  document.getElementById("playerSlots").style.opacity = 1;
+  answerInput.value = "";
+  submitButton.disabled = "true";
+  answerInput.disabled = "true";
+  opponentSlots.style.opacity = 0.25;
+  playerSlots.style.opacity = 1;
+  if (checkIfGameIsOver() === true) {
+    gameOver();
+    return;
+  }
   setTimeout(opGuess, 1000);
 }
-document.getElementById("opSlots").addEventListener('click', highlight);
-document.getElementById('submit').addEventListener("click", guess);
 
-var opPick = -1;
 function opGuess() {
- if (plHand.length > 0) {
- let anotherRandomNumber = Math.floor(Math.random() * (plHand.length - 1));
- opPick = plHand[anotherRandomNumber];
- opHighlight();
- var chancesIndex = plArr[opPick].difficulty + difficultyIndex;
- setTimeout(actualGuess, 800);
- function actualGuess() {
-   let chances = Math.floor(Math.random() * chancesIndex);
-   if (chances == 0) {
-     chat.innerHTML = "Computer picked card No. " 
-       + (opPick + 1) + " (" + plArr[opPick].name + ") and answered correctly<br><br>" + chat.innerHTML;
-     opScore++;
-   } else {
-    chat.innerHTML = "Computer picked card No. "
-   + (opPick + 1) + " (" + plArr[opPick].name + ") and missed<br><br>" + chat.innerHTML;
-   };
-   if (arrNumbers.length > 0) {
-   let len = arrNumbers.length;
-   let randomNumber = Math.floor(Math.random() * len);
-   let a = arrNumbers[randomNumber]
-   plArr[opPick] = countries[a];
-   arrNumbers.splice(randomNumber, 1);
-   } else {
-   plArr[opPick] = countries[0];
-   let index = plHand.indexOf(opPick);
-   plHand.splice(index, 1);
-   }
-   opPick = -1;
-   opHighlight();
-   update();
-   document.getElementById("opSlots").style.opacity = 1;
-   document.getElementById("playerSlots").style.opacity = 0.25;
+  if (playerHand.length > 0) {
+    let anotherRandomNumber = Math.floor(Math.random() * (playerCardNumbers.length - 1));
+    let cardIndex = playerCardNumbers[anotherRandomNumber];
+    let opponentPick = playerHand[cardIndex];
+    opponentHighlight(opponentPick);
+    let chancesIndex = opponentPick.difficulty + difficultyIndex;
+    setTimeout(performOpGuess, 800);
+    function performOpGuess() {
+      let chances = Math.floor(Math.random() * chancesIndex);
+      if (chances == 0) {
+        // Correct answer
+        showMessage(`Computer chose flag of ${opponentPick.name} and answered correctly`);
+        opScore++;
+      } else {
+        // Wrong answer
+        showMessage(`Computer chose flag of ${opponentPick.name} and missed`);
+      };
+      // Pick a new card to player hand
+      if (arrNumbers.length > 0) {
+        let len = arrNumbers.length;
+        let randomNumber = Math.floor(Math.random() * len);
+        let countryId = arrNumbers[randomNumber];
+        playerHand[cardIndex] = countries[countryId];
+        arrNumbers.splice(randomNumber, 1);
+      } else {
+        let index = playerHand.indexOf(opponentPick);
+        playerHand[cardIndex] = countries[0];
+        playerCardNumbers.splice(playerCardNumbers.indexOf(cardIndex), 1);
+      }
+    opponentPick = -1;
+    opponentHighlight("None");
+    updateScoreboard();
+    updateFlagImages();
+    if (checkIfGameIsOver() === true) {
+      gameOver();
+      return;
+    }
+    opponentSlots.style.opacity = 1;
+    playerSlots.style.opacity = 0.25;
   }
  }
 }
 
-function update() {
-s1.src = opArr[0].source;
-s2.src = opArr[1].source;
-s3.src = opArr[2].source; 
-s4.src = opArr[3].source;
-s5.src = opArr[4].source; 
-s6.src = plArr[0].source;
-s7.src = plArr[1].source; 
-s8.src = plArr[2].source;
-s9.src = plArr[3].source;
-s10.src = plArr[4].source;
-document.getElementById("plscore").innerHTML = "YOU: " + plScore;
-document.getElementById("opscore").innerHTML = "COMPUTER: " + opScore;
-if (arrNumbers.length > 1) {
-document.getElementById("cardsremaining").innerHTML = arrNumbers.length + " cards remaining in deck";
-} else if (arrNumbers.length == 1) {
-  document.getElementById("cardsremaining").innerHTML = arrNumbers.length + " card remaining in deck";
-} else {
-  document.getElementById("cardsremaining").innerHTML = "No cards remaining in the deck";
-};
-  if (arrNumbers.length == 0 && plHand.length == 0 && opArr[0] == countries[0] && opArr[1] == countries[0] && opArr[2] == countries[0] && opArr[3] == countries[0] && opArr[4] == countries[0] ) {
-    gameOver();
+function highlight(pickedCard) {
+  let index = pickedCard - 1;
+  const items = opponentSlots.getElementsByClassName('slot');
+  for (let i = 0; i < 5; i++) {
+    if (i === index) {
+      items[i].style.border = "3px solid #3366ff";
+    } else {
+      items[i].style.border = "1px solid black"
+    }
   }
 }
-update();
+
+function opponentHighlight(opponentPick) {
+  if (opponentPick === "None") {
+    for (let i = 0; i < 5; i++) {
+      let item = playerSlots.getElementsByClassName('slot')[i];
+      item.style.border = "1px solid black";
+    }
+  } else {
+    let cardNum = playerHand.indexOf(opponentPick);
+    for (let i = 0; i < 5; i++) {
+      let item = playerSlots.getElementsByClassName('slot')[i];
+      if (i === cardNum) {
+        item.style.border = "3px solid #3366ff"
+      } else {
+        item.style.border = "1px solid black"
+      }
+    }
+  } 
+}
+
+function updateScoreboard() {
+  document.getElementById("plscore").innerHTML = "YOU: " + plScore;
+  document.getElementById("opscore").innerHTML = "COMPUTER: " + opScore;
+  if (arrNumbers.length > 1) {
+    cardsRemaining.innerHTML = arrNumbers.length + " cards remaining in deck";
+  } else if (arrNumbers.length == 1) {
+    cardsRemaining.innerHTML = arrNumbers.length + " card remaining in deck";
+  } else {
+    cardsRemaining.innerHTML = "No cards remaining in the deck";
+  };
+}
+
+
+function checkIfGameIsOver() {
+  if (arrNumbers.length > 0) {
+    return false;
+  }
+  for (let i = 0; i < 5; i++) {
+    if (oppHand[i].name !== "BLANK") {
+      return false
+    }
+    if (playerHand[i].name !== "BLANK") {
+      return false
+    }
+  }
+  return true
+}
 
 function gameOver() {
-  document.getElementById('cardsremaining').innerHTML = "GAME OVER";
+  cardsRemaining.innerHTML = "GAME OVER. ";
   if (opScore > plScore) {
-    chat.innerHTML = "Computer won. Better luck next time!<br><br>" + chat.innerHTML;
+    cardsRemaining.innerHTML += "Computer won"
   } else if (opScore < plScore) {
-    chat.innerHTML = "Congratulations! You won!<br><br>" + chat.innerHTML;
+    cardsRemaining.innerHTML += "You won!";
   } else {
-    chat.innerHTML = "It's a tie!<br><br>" + chat.innerHTML;
+    cardsRemaining.innerHTML += "It's a tie";
   }
 }
 
-// restart
-function displayRestartText() {
-  document.getElementById("restartText").style.opacity = 1;
+// Show message
+function showMessage(msg) {
+  const newMessage = document.createElement("DIV");
+  newMessage.classList.add('message');
+  if (colorTheme === 0) {
+    newMessage.classList.add('lighter-color');
+  }
+  newMessage.innerText = msg;
+  centerMessage.append(newMessage);
+
+  setTimeout( () => { centerMessage.removeChild(newMessage)}, 2000)
 }
-function hideRestartText() {
-  document.getElementById("restartText").style.opacity = 0;
-}
-function displaySettingsText() {
-  document.getElementById("settingsText").style.opacity = 1;
-}
-function hideSettingsText() {
-  document.getElementById("settingsText").style.opacity = 0;
-}
-function reset() {
-  chat.innerHTML = "Restarting the game<br><br>" + chat.innerHTML;
+
+// SECOND TIER FUNCTIONS
+function restartGame() {
+  showMessage("Restarting the game");
   arrNumbers = [];
   for (let i = 1; i < countries.length; i++) {
-  arrNumbers.push( i );
+    arrNumbers.push( i );
   };
-  if (deckQuantity == 1) {
-    while (arrNumbers.length > 70) {
+  while (arrNumbers.length > deckQuantity) {
     let len = arrNumbers.length;
     let randomNumber = Math.floor(Math.random() * len);
     arrNumbers.splice(randomNumber, 1);
-    }
   };
-  if (deckQuantity == 2) {
-    while (arrNumbers.length > 30) {
-      let len = arrNumbers.length;
-      let randomNumber = Math.floor(Math.random() * len);
-      arrNumbers.splice(randomNumber, 1);
-    }
-  }
   opScore = 0;
   plScore = 0;
-  plHand = [0,1,2,3,4];
-  opArr = [0,0,0,0,0];
-  plArr = [0,0,0,0,0];
-  for (let i = 0; i < 5; i++) {
-    let len = arrNumbers.length;
-    let randomNumber = Math.floor(Math.random() * len);
-    let a = arrNumbers[randomNumber];
-    opArr[i] = countries[a];
-    arrNumbers.splice(randomNumber, 1);
-  };
-  for (let i = 0; i < 5; i++) {
-    let len = arrNumbers.length;
-    let randomNumber = Math.floor(Math.random() * len);
-    let a = arrNumbers[randomNumber];
-    plArr[i] = countries[a];
-    arrNumbers.splice(randomNumber, 1);
-  };
-  var opPick = -1;
-  update();
-}
-function confirmRestart() {
-  document.getElementById("confirmRestart").style.display = "block";
-}
-function hideConfirmRestart() {
-    document.getElementById("confirmRestart").style.display = "none";
+  playerHand = [];
+  oppHand = [];
+  playerPickedCard = 0;
+  playerCardNumbers = [0,1,2,3,4];
+  splitCards();
+  updateFlagImages();
+  updateScoreboard();
+  opPick = -1;
+  playerSlots.opacity = 0.25;
+  opponentSlots.opacity = 1;
 }
 
-// settings
-var colorTheme = 0; // 0 - light; 1 - dark; 
-var difficultyIndex = 0; // -1 - hard; 0 - medium; 1 - easy;
-// deckquantity defined in the beginning
-document.getElementById("close-btn").addEventListener("click", closeSettings);
+// Opening Restart Module
+function openConfirmRestartModal() {
+  document.getElementById("confirmRestart").style.display = "flex";
+}
+function hideConfirmRestart() {
+  document.getElementById("confirmRestart").style.display = "none";
+}
+
+// Opening Settings Module
+function openSettings() {
+  document.getElementById("settings-room").style.display = "flex";
+  retrieveSettings();
+  highlightSettingsColorSlots();
+  highlightSettingsDifficulty();
+  highlightSettingsDeckSize();
+}
 function closeSettings() {
   document.getElementById("settings-room").style.display = "none";
   storeSettings();
 }
-document.getElementById("settings").addEventListener("click", openSettings);
-function openSettings() {
-  document.getElementById("settings-room").style.display = "block";
-  retrieveSettings();
-  updateDifficulty(difficultyIndex);
-  updateChatBox();
-}
 
-function updateTheme(a) {
-  colorTheme = a;
-  if (colorTheme == 0) {
+
+function removeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+function updateTheme(colorIndex) {
+  colorTheme = colorIndex;
+  if (colorTheme === 0) {
     document.getElementsByTagName("BODY")[0].style.backgroundImage = 'linear-gradient(to right, #006080, #00663d)';
     document.getElementById("plscore").style.color = 'black';
     document.getElementById("opscore").style.color = 'black';
     document.getElementById("cardsremaining").style.color = "rgba(0,0,0, .25)";
-    document.getElementById("dark-slot").style.opacity = 0.45;
-    document.getElementById("light-slot").style.opacity = 1;
   };
-  if (colorTheme == 1) {
+  if (colorTheme === 1) {
     document.getElementsByTagName("BODY")[0].style.backgroundImage = 'linear-gradient(to right, #0d0d0d, #00001a)';
     document.getElementById("plscore").style.color = 'white';
     document.getElementById("opscore").style.color = 'white';
     document.getElementById("cardsremaining").style.color = "rgba(255,255,255, .75)";
-    document.getElementById("light-slot").style.opacity = 0.45;
-    document.getElementById("dark-slot").style.opacity = 1;
   };
+  highlightSettingsColorSlots();
 }
 
-function updateDifficulty(a) {
-  difficultyIndex = a;
-  if (difficultyIndex == 0) {
-    document.getElementById("dif-easy").style.backgroundColor = 'rgba(0,0,0,0)';
-    document.getElementById("dif-easy").style.color = 'white';
-    document.getElementById("dif-med").style.backgroundColor = 'white';
-    document.getElementById("dif-med").style.color = 'rgba(0,0,0,0.7)';
-    document.getElementById("dif-hard").style.backgroundColor = 'rgba(0,0,0,0)';
-    document.getElementById("dif-hard").style.color = 'white';
-  }
-  else if (difficultyIndex == 1) {
-    document.getElementById("dif-easy").style.backgroundColor = 'white';
-    document.getElementById("dif-easy").style.color = 'rgba(0,0,0,0.7)';
-    document.getElementById("dif-med").style.backgroundColor = 'rgba(0,0,0,0)';
-    document.getElementById("dif-med").style.color = 'white'
-    document.getElementById("dif-hard").style.backgroundColor = 'rgba(0,0,0,0)';
-    document.getElementById("dif-hard").style.color = 'white'
-  }
-  else if (difficultyIndex == -1) {
-    document.getElementById("dif-easy").style.backgroundColor = 'rgba(0,0,0,0)';
-    document.getElementById("dif-easy").style.color = 'white'
-    document.getElementById("dif-med").style.backgroundColor = 'rgba(0,0,0,0)';
-    document.getElementById("dif-med").style.color = 'white'
-    document.getElementById("dif-hard").style.backgroundColor = 'white';
-    document.getElementById("dif-hard").style.color = 'rgba(0,0,0,0.7)';
-  }
+function updateDifficulty(newDifficultyIndex) {
+  difficultyIndex = newDifficultyIndex;
+  highlightSettingsDifficulty();
 }
-updateDifficulty(0);
 
-function updateDeck(a) {
-  deckQuantity = a;
-  if (deckQuantity == 0) {
-    document.getElementById("deck-full").style.backgroundColor = "white";
-    document.getElementById("deck-full").style.color = "rgba(0,0,0,0.7)";
-    document.getElementById("deck-medium").style.backgroundColor = "rgba(0,0,0,0)";
-    document.getElementById("deck-medium").style.color = "white";
-    document.getElementById("deck-short").style.backgroundColor = "rgba(0,0,0,0)";
-    document.getElementById("deck-short").style.color = "white";
-  }
-  else if (deckQuantity == 1) {
-    document.getElementById("deck-medium").style.backgroundColor = "white";
-    document.getElementById("deck-medium").style.color = "rgba(0,0,0,0.7)";
-    document.getElementById("deck-full").style.backgroundColor = "rgba(0,0,0,0)";
-    document.getElementById("deck-full").style.color = "white";
-    document.getElementById("deck-short").style.backgroundColor = "rgba(0,0,0,0)";
-    document.getElementById("deck-short").style.color = "white";
-  }
-  else if (deckQuantity == 2) {
-    document.getElementById("deck-short").style.backgroundColor = "white";
-    document.getElementById("deck-short").style.color = "rgba(0,0,0,0.7)";
-    document.getElementById("deck-medium").style.backgroundColor = "rgba(0,0,0,0)";
-    document.getElementById("deck-medium").style.color = "white";
-    document.getElementById("deck-full").style.backgroundColor = "rgba(0,0,0,0)";
-    document.getElementById("deck-full").style.color = "white";
-  };
-};
-var messageBoardVisibility = 1;
-function hideChat() {
-  messageBoardVisibility++;
-  if (messageBoardVisibility > 1) {
-    messageBoardVisibility = 0;
-  };
-  updateChatBox();
-};
-function updateChatBox() {
-  if (messageBoardVisibility == 0) {
-    document.getElementById('chat').style.display = "none";
-    document.getElementById('message-settings').style.backgroundColor = "rgba(0,0,0,0.7)";
-    document.getElementById('message-settings').style.color = "white";
-  } else {
-    document.getElementById('chat').style.display = "block";
-    document.getElementById('message-settings').style.backgroundColor = "White";
-    document.getElementById('message-settings').style.color = "rgba(0,0,0,0.7)";
-  };
+function updateDeck(newDeckSize) {
+  deckQuantity = newDeckSize;
+  highlightSettingsDeckSize();
 };
 
-// storing the settings
 function storeSettings() {
-  if (typeof(Storage) !== "undefined") {
-    // difficulty
-    if (difficultyIndex == 0) {
+  if (typeof(Storage) !== undefined) {
+    if (difficultyIndex === 0) {
       localStorage.setItem('difficultyIndex','medium');
-    }
-    if (difficultyIndex == 1) {
+    } else if (difficultyIndex === 1) {
       localStorage.setItem('difficultyIndex','easy');
-    }
-    if (difficultyIndex == -1) {
+    } else if (difficultyIndex === -1) {
       localStorage.setItem('difficultyIndex','hard');
+      console.log("stored");
     };
-    // message board
-    if (messageBoardVisibility == 1) {
-      localStorage.setItem('showMessageBoard','true');
-   }
-    if (messageBoardVisibility == 0) {
-     localStorage.setItem('showMessageBoard','false');
-    };
-    // theme
-    if (colorTheme == 0) {
+    if (colorTheme === 0) {
       localStorage.setItem('colorTheme','light');
-    }
-    if (colorTheme == 1) {
+    } else {
      localStorage.setItem('colorTheme','dark');
     };
   };
 };
-// retrieving settings from the local storage
+
 function retrieveSettings() {
-  if (localStorage.difficultyIndex == 'easy') {
+  if (localStorage.colorTheme == undefined || localStorage.difficultyIndex == undefined ) {
+      localStorage.colorTheme = 'light';
+      localStorage.difficultyIndex = 'medium';
+  };
+  if (localStorage.difficultyIndex === 'easy') {
     difficultyIndex = 1;
-  }
-  if (localStorage.difficultyIndex == 'medium') {
+  } else if (localStorage.difficultyIndex === 'medium') {
     difficultyIndex = 0;
-  }
-  if (localStorage.difficultyIndex == 'hard') {
+  } else if (localStorage.difficultyIndex === 'hard') {
     difficultyIndex = -1;
   };
-  if (localStorage.colorTheme == 'light') {
+  if (localStorage.colorTheme === 'light') {
     colorTheme = 0;
-  }
-  if (localStorage.colorTheme == 'dark') {
+  } else if (localStorage.colorTheme === 'dark') {
     colorTheme = 1;
-  };
-  if (localStorage.showMessageBoard == 'true') {
-    messageBoardVisibility = 1;
-  }
-  if (localStorage.showMessageBoard == 'false') {
-    messageBoardVisibility = 0;
   };
 };
 
-// setting up default storage if the value is undefined
-if (localStorage.colorTheme == undefined || localStorage.showMessageBoard == undefined || localStorage.difficultyIndex == undefined ) {
-  localStorage.colorTheme = 'light';
-  localStorage.showMessageBoard = 'true';
-  localStorage.difficultyIndex = 'medium';
-};
+function highlightDifficultyButton() {
+  for (let i = 1, k = 0; i > -2; i--, k++) {
+    let item = difficultyButtons.getElementsByClassName('section-button')[k];
+    if (difficultyIndex === i) {
+      item.classList.add('selected');
+    } else {
+      item.classList.remove('selected');
+    }
+  }
+}
+
+function highlightDeckSizeButton() {
+  const fullButton = deckSizeButtons.getElementsByClassName('section-button')[0];
+  const shortButton = deckSizeButtons.getElementsByClassName('section-button')[1];
+  const customButton = deckSizeButtons.getElementsByClassName('section-custom')[0];
+  if (deckQuantity === 195) {
+    fullButton.classList.add('selected')
+  } else {
+    fullButton.classList.remove('selected')
+  };
+  if (deckQuantity === 30) {
+    shortButton.classList.add('selected')
+  } else {
+    shortButton.classList.remove('selected')
+  };
+  if (deckQuantity !== 30 && deckQuantity !== 195) {
+    customButton.classList.add('selected');
+    const input = document.getElementById('deck-size-input');
+    input.value = deckQuantity;
+  } else {
+    customButton.classList.remove('selected')
+  };
+}
+
+function pickDifficulty(newDifficultyIndex) {
+  difficultyIndex = newDifficultyIndex;
+  highlightDifficultyButton();
+}
+function pickDeckSize(newDeckSize) {
+  deckQuantity = newDeckSize;
+  highlightDeckSizeButton();
+}
+
+function highlightSettingsColorSlots(){
+  if (colorTheme === 0) {
+    settingsColorSlots.getElementsByClassName('color-slot')[0].classList.add('selected');
+    settingsColorSlots.getElementsByClassName('color-slot')[1].classList.remove('selected');
+  } else {
+    settingsColorSlots.getElementsByClassName('color-slot')[1].classList.add('selected');
+    settingsColorSlots.getElementsByClassName('color-slot')[0].classList.remove('selected')
+  }
+}
+
+function highlightSettingsDifficulty() {
+  if (difficultyIndex === 1) {
+    settingsDifficultySlots.getElementsByClassName('set-slot')[0].classList.add('selected');
+    settingsDifficultySlots.getElementsByClassName('set-slot')[1].classList.remove('selected');
+    settingsDifficultySlots.getElementsByClassName('set-slot')[2].classList.remove('selected');
+  }
+  if (difficultyIndex === 0) {
+    settingsDifficultySlots.getElementsByClassName('set-slot')[0].classList.remove('selected');
+    settingsDifficultySlots.getElementsByClassName('set-slot')[1].classList.add('selected');
+    settingsDifficultySlots.getElementsByClassName('set-slot')[2].classList.remove('selected');
+  }
+  if (difficultyIndex === -1) {
+    settingsDifficultySlots.getElementsByClassName('set-slot')[0].classList.remove('selected');
+    settingsDifficultySlots.getElementsByClassName('set-slot')[1].classList.remove('selected');
+    settingsDifficultySlots.getElementsByClassName('set-slot')[2].classList.add('selected');
+  }
+}
+
+function highlightSettingsDeckSize() {
+  document.getElementById('settings-custom-deck').value = deckQuantity;
+  if (deckQuantity === 195) {
+    settingsDeckSizeSlots.getElementsByClassName('set-slot')[0].classList.add('selected');
+    settingsDeckSizeSlots.getElementsByClassName('set-slot')[1].classList.remove('selected');
+    settingsDeckSizeSlots.getElementsByClassName('set-slot')[2].classList.remove('selected');
+  } else if (deckQuantity === 30) {
+    settingsDeckSizeSlots.getElementsByClassName('set-slot')[0].classList.remove('selected');
+    settingsDeckSizeSlots.getElementsByClassName('set-slot')[1].classList.add('selected');
+    settingsDeckSizeSlots.getElementsByClassName('set-slot')[2].classList.remove('selected');
+  } else {
+    settingsDeckSizeSlots.getElementsByClassName('set-slot')[0].classList.remove('selected');
+    settingsDeckSizeSlots.getElementsByClassName('set-slot')[1].classList.remove('selected');
+    settingsDeckSizeSlots.getElementsByClassName('set-slot')[2].classList.add('selected');
+  }
+}
+
+// Adding events
+playButton.addEventListener("click", playGame);
+s1.onclick = function() { pickFlag(1); }
+s2.onclick = function() { pickFlag(2); }
+s3.onclick = function() { pickFlag(3); }
+s4.onclick = function() { pickFlag(4); }
+s5.onclick = function() { pickFlag(5); }
+submitButton.addEventListener("click", guess);
+document.getElementById("close-btn").addEventListener("click", closeSettings);
+difficultyButtons.getElementsByClassName('section-button')[0].onclick = function() { pickDifficulty(1)};
+difficultyButtons.getElementsByClassName('section-button')[1].onclick = function() { pickDifficulty(0)};
+difficultyButtons.getElementsByClassName('section-button')[2].onclick = function() { pickDifficulty(-1)};
+deckSizeButtons.getElementsByClassName('section-button')[0].onclick = function() { pickDeckSize(195)};
+deckSizeButtons.getElementsByClassName('section-button')[1].onclick = function() { pickDeckSize(30)};
+deckSizeButtons.getElementsByClassName('section-custom')[0].onclick = function() { pickDeckSize(document.getElementById('deck-size-input').value)};
+settingsButton.addEventListener('click', openSettings);
+document.getElementById('light-slot').onclick = function() { updateTheme(0)}
+document.getElementById('dark-slot').onclick = function() { updateTheme(1)}
+settingsDifficultySlots.getElementsByClassName('set-slot')[0].onclick = function() { updateDifficulty(1)};
+settingsDifficultySlots.getElementsByClassName('set-slot')[1].onclick = function() { updateDifficulty(0)};
+settingsDifficultySlots.getElementsByClassName('set-slot')[2].onclick = function() { updateDifficulty(-1)};
+settingsDeckSizeSlots.getElementsByClassName('set-slot')[0].onclick = function() { updateDeck(195)};
+settingsDeckSizeSlots.getElementsByClassName('set-slot')[1].onclick = function() { updateDeck(30)};
+settingsDeckSizeSlots.getElementsByClassName('set-slot')[2].onclick = function() { updateDeck(document.getElementById('settings-custom-deck').value)};
+
+
+
+// Pre-game init
+let deckQuantity = 40
+let opScore = 0;
+let plScore = 0;
+let playerHand = [];
+let oppHand = [];
+let playerPickedCard = 0;
+let playerCardNumbers = [0,1,2,3,4];
+
+let difficultyIndex = 0; // -1 - hard; 0 - medium; 1 - easy;
+let colorTheme = 0; // 0 - light; 1 - dark; 
+retrieveSettings();
+updateTheme(colorTheme);
+
+highlightDifficultyButton();
+highlightDeckSizeButton();
+
+// Play
+function playGame() {
+  setDeck(deckQuantity);
+  splitCards();
+  updateScoreboard();
+  updateFlagImages();
+  removeModal();
+}

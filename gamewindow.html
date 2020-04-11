@@ -1,99 +1,134 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-  <link href='https://fonts.googleapis.com/css?family=Archivo' rel='stylesheet'>
+  <meta charset="utf-8" />
+    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Guess em"/>
+    <title>Flags</title>
   <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
+  <link href='https://fonts.googleapis.com/css?family=Archivo' rel='stylesheet'>
+  <script src="countries.js" defer></script>
+  <script src="scripts.js" defer></script>
+  <script src="autocomplete.js" defer></script>
+</head>
 <body>
+
   <div class="modal" id="modal">
-    <h1>Flags</h1>
-    <p>This game is based on a card game "Flags of the world". Your goal is to guess as many 
-      flags as possible.<br><br> To start with, each player receives 5 cards with flags of countries. 
-      At the beginning of each turn, player chooses a card with a flag<br> and makes a guess which 
-      country owns the flag. For every correct answer player receives 1 point. After each attempt 
-      players take turns.<br> After going through all of the cards, player with the most points wins.
-      <br><br>Choose a deck to play with: </p>
-    <button onclick="play(); setDeck(0)">Full (195 cards)</button>
-    <button onclick="play(); setDeck(1)">Medium (70 cards)</button>
-    <button onclick="play(); setDeck(2)">Short (30 cards)</button>
+    <div class="modal-text-container">
+      <h1>Flag Game</h1>
+      <div class="modal-rules">
+        <div class="rules-header">Rules</div>
+        <div class="rules-rule">Your goal is to guess more flags than computer</div>
+        <div class="rules-rule">To make a guess, choose a card from top line of cards (opponent cards), write answer in the field below
+          and hit "Guess"
+        </div>
+        <div class="rules-rule">The game ends when there are no cards left in deck and player fields</div>
+        <div class="rules-rule">Player with the most cards guessed wins</div>
+      </div>
+      <div class="modal-section">
+        <div class="section-header">Select difficulty:</div>
+        <div class="section-buttons">
+          <div class="section-button">Easy</div>
+          <div class="section-button">Medium</div>
+          <div class="section-button">Hard</div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="section-header">Select deck size:</div>
+        <div class="section-buttons">
+          <div class="section-button">Full (195 cards)</div>
+          <div class="section-button">Short (30 cards)</div>
+          <div class="section-custom">
+            Custom
+            <input id="deck-size-input" type="number" max="195" min="10" onKeyDown="return false">
+          </div>
+        </div>
+      <div class="modal-section">
+        <div class="section-buttons">
+          <div class="section-button play-button">Play</div>
+        </div>
+      </div>
+      </div>
+    </div>
   </div>
+
   <div class="gameroom">
-    <div class="settings-screen" id="settings-room">
-      <h1>Settings</h1>
-      <div class="close-btn" id="close-btn">X</div>
-      <div class="settings-default">
-        <p>Change color theme:</p>
-        <div class="color-slot light-slot" id="light-slot" onclick="updateTheme(0)"></div>
-        <div class="color-slot dark-slot" id="dark-slot" onclick="updateTheme(1)"></div>
-      </div>
-      <div class="settings-default">
-        <p>Change difficulty mode:</p>
-        <div class="set-slot" id="dif-easy" onclick="updateDifficulty(1)">Rookie</div>
-        <div class="set-slot" id="dif-med" onclick="updateDifficulty(0)">Novice</div>
-        <div class="set-slot" id="dif-hard" onclick="updateDifficulty(-1)">Expert</div>
-      </div>
-      <div class="settings-default">
-        <p>Change deck size <br><span style="font-size:11px">(game needs to be restarted for changes to initialize)</span>:</p>
-        <div class="set-slot" id="deck-full" onclick="updateDeck(0)">Full deck (195 cards)</div>
-        <div class="set-slot" id="deck-medium" onclick="updateDeck(1)">Medium deck (70 cards)</div>
-        <div class="set-slot" id="deck-short" onclick="updateDeck(2)">Short deck (30 cards)</div>
-      </div>
-      <div class="settings-default">
-        <p>Message board:</p>
-        <div class="set-slot message-settings" id="message-settings" onclick="hideChat()">Show the message board</div>
-      </div>
-      <div class="exit-btn"></div>
-    </div>
-    <div class="confirmRestart" id="confirmRestart">
-      <p>Are you sure you want to restart?</p>
-      <button onclick="reset();hideConfirmRestart()">Yes</button>
-      <button onclick="hideConfirmRestart()">No</button>
-    </div>
     <div id="score" class="scoreboard">
       <div id="plscore"></div>
       <div class="toolbar">
-        <div id="restartSlot">
-          <button id="restart" onclick="confirmRestart()" onmouseover="displayRestartText()" onmouseout="hideRestartText()">
-        </button>
-          <p id="restartText">Restart</p>
-        </div>
-        <div id="settingsSlot">
-          <button id="settings" onmouseover="displaySettingsText()" onmouseout="hideSettingsText()"></button>
-          <p id="settingsText">Settings</p>
-        </div>
+        <div id="restart" class="restart-button" onclick="openConfirmRestartModal()"></div>
+        <div class="settings-button"></div>
       </div>
       <div id="opscore"></div>
     </div>
-    <div id="opSlots" class="opSlots">
+    
+    <div id="opponentSlots" class="opSlots">
       <img id="s1" src="flags/00.png" class="slot">
       <img id="s2" class="slot" src="flags/00.png">
       <img id="s3" class="slot" src="flags/00.png">
       <img id="s4" class="slot" src="flags/00.png">
       <img id="s5" class="slot" src="flags/00.png">
     </div>
-    <div class="center" id="cardsremaining"></div>
+    <div class="center">
+      <div id="center-message">
+        <div class="message">Pick a card from above and guess</div>
+      </div>
+      <div id="cardsremaining">Cards remaining:</div>
+    </div>
     <div class="playerSlots" id="playerSlots">
-      <img id="s6" class="slot" src="flags/00.png">
-      <img id="s7" class="slot" src="flags/00.png">
-      <img id="s8" class="slot" src="flags/00.png">
-      <img id="s9" class="slot" src="flags/00.png">
-      <img id="s10" class="slot" src="flags/00.png">
+      <img id="s6" class="slot" src="flags/00.png"/>
+      <img id="s7" class="slot" src="flags/00.png"/>
+      <img id="s8" class="slot" src="flags/00.png"/>
+      <img id="s9" class="slot" src="flags/00.png"/>
+      <img id="s10" class="slot" src="flags/00.png"/>
     </div>
     <div class="inputs">
       <div class="autocomplete">
-      <input id="guess" type="text" disabled></input>
+        <input id="guess" type="text" disabled></input>
       </div>
-    <button id="submit" disabled>Guess</button>
+      <button id="submit" disabled>Guess</button>
     </div>
-  <div class="check">
-    <p id="spelling"></p>
+    <!-- <div class="check">
+      <p id="spelling"></p>
+    </div> -->
   </div>
+  <div class="confirm-restart-modal" id="confirmRestart">
+    <div class="question-box">
+      <div class="question-box-header">Are you sure you want to restart?</div>
+      <div class="question-box-button" onclick="restartGame();hideConfirmRestart()">Yes</div>
+      <div class="question-box-button" onclick="hideConfirmRestart()">No</div>
+    </div>
   </div>
-  <div class="chat" id="chat">
-    <p id="demo"></p>
+
+  <div class="settings-screen" id="settings-room">
+    <div class="close-btn" id="close-btn">X</div>
+    <div class="settings-box">
+      <h1>Settings</h1>
+      <div class="settings-text">Change color theme:</div>
+      <div class="settings-default" id="color-slots">
+        <div class="color-slot light-slot" id="light-slot"></div>
+        <div class="color-slot dark-slot" id="dark-slot"></div>
+      </div>
+      <div class="settings-text">Change difficulty mode:</div>
+      <div class="settings-default" id="difficulty-slots">
+        <div class="set-slot">Easy</div>
+        <div class="set-slot">Medium</div>
+        <div class="set-slot">Hard</div>
+      </div>
+      <div class="settings-text">Change deck size:</div>
+      <div class="settings-default" id="deck-size-slots">
+        <div class="set-slot">Full deck (195 cards)</div>
+        <div class="set-slot">Short deck (30 cards)</div>
+        <div class="set-slot">Custom
+          <input id="settings-custom-deck" max="195" min="10">
+        </div>
+      </div>
+    </div>
   </div>
-  <script src="countries.js" async></script>
-  <script src="scripts.js" async></script>
-  <script src="autocomplete.js" async></script>
+
+  <!-- <div class="chat" id="chat">
+    <p id="chat-element"></p>
+  </div> -->
   </body>
 </html>

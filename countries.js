@@ -1,5 +1,4 @@
-// array with country information
-var countries = [];
+let countries = [];
 class Country {
   constructor(name, src, dif) {
     this.name = name;
@@ -204,7 +203,7 @@ countries[193] = new Country("YEMEN", "flags/193.png", 3);
 countries[194] = new Country("ZAMBIA", "flags/194.png", 2);
 countries[195] = new Country("ZIMBABWE", "flags/195.png", 3);
 ﻿// array with each country ID
-var arrNumbers = [];
+let arrNumbers = [];
 for (let i = 1; i < countries.length; i++) {
   arrNumbers.push( i );
 };
