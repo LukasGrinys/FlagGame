@@ -63,10 +63,14 @@
   width: 100%;
   height: 25px;
   border: none;
+  color: grey;
   background: none;
   font-family: "Archivo", "Tahoma", sans-serif;
   font-size: 1.2em;
   text-align: center;
+}
+.set-slot > input:focus {
+  outline: none;
 }
 .close-btn {
   position: absolute;
@@ -153,6 +157,20 @@
   justify-content: space-around;
   align-items: center;
 }
+#submit {
+  border: 1px solid white;
+  background:none;
+  color: white;
+  width: 60px;
+  height: 24px;
+  border-radius: 2px;
+  font-family: "Archivo", "Tahoma", sans-serif;
+  cursor: pointer;
+  transition-duration: 0.5s;
+}
+#submit:hover {
+  background: #069;
+}
 .restart-button {
   background-image: url('./restart.png');
   background-size: 24px 24px;
@@ -206,11 +224,14 @@
 .settings-button:hover::before {
   opacity: 1;
 }
-
 .settings-button:hover {
   opacity: 1;
   transition-duration: 0.7s;
   cursor: pointer;
+}
+.note {
+  width: 100%;
+  opacity: 0;
 }
 
 .opSlots {
@@ -282,15 +303,6 @@
   height: 25px;
   font-size: 18px;
   border: 1px solid grey;
-}
-.inputs > button {
-  height: 25px;
-  border: 1px solid black;
-  border-radius: 2px;
-  font-family: "Archivo", "Tahoma";
-  background-color: white;
-  cursor: pointer;
-  font-size: 16px;
 }
 .slot {
   width: 120px;
@@ -425,6 +437,9 @@
   padding: 2px;
   font-size: 1em;
   cursor: default;
+}
+.section-custom > input:focus {
+  outline: none;
 }
 .section-custom:hover {
   background-color: grey;

@@ -1,3 +1,12 @@
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function() {
+    navigator.serviceWorker
+      .register("/serviceworker.js")
+      .then(res => console.log("service worker registered"))
+      .catch(err => console.log("service worker not registered", err))
+  })
+}
+
 // DOM Accessing
 const s1 = document.getElementById('s1'); 
 const s2 = document.getElementById('s2');
@@ -22,7 +31,7 @@ const settingsButton = document.getElementsByClassName('settings-button')[0];
 const settingsColorSlots = document.getElementById('color-slots');
 const settingsDifficultySlots = document.getElementById('difficulty-slots');
 const settingsDeckSizeSlots = document.getElementById('deck-size-slots');
-
+const deckSizeNote = document.getElementsByClassName('note')[0];
 // GAME ENGINE
 function setDeck(deckQuantity) {
   while (arrNumbers.length > deckQuantity) {
@@ -258,12 +267,12 @@ function restartGame() {
   oppHand = [];
   playerPickedCard = 0;
   playerCardNumbers = [0,1,2,3,4];
+  opPick = -1;
+  playerSlots.style.opacity = 0.25;
+  opponentSlots.style.opacity = 1;
   splitCards();
   updateFlagImages();
   updateScoreboard();
-  opPick = -1;
-  playerSlots.opacity = 0.25;
-  opponentSlots.opacity = 1;
 }
 
 // Opening Restart Module
@@ -326,7 +335,6 @@ function storeSettings() {
       localStorage.setItem('difficultyIndex','easy');
     } else if (difficultyIndex === -1) {
       localStorage.setItem('difficultyIndex','hard');
-      console.log("stored");
     };
     if (colorTheme === 0) {
       localStorage.setItem('colorTheme','light');
@@ -443,6 +451,13 @@ function highlightSettingsDeckSize() {
   }
 }
 
+function showDeckSizeNote() {
+  deckSizeNote.style.opacity = 1;
+}
+function hideDeckSizeNote() {
+  deckSizeNote.style.opacity = 0;
+}
+
 // Adding events
 playButton.addEventListener("click", playGame);
 s1.onclick = function() { pickFlag(1); }
@@ -451,7 +466,7 @@ s3.onclick = function() { pickFlag(3); }
 s4.onclick = function() { pickFlag(4); }
 s5.onclick = function() { pickFlag(5); }
 submitButton.addEventListener("click", guess);
-document.getElementById("close-btn").addEventListener("click", closeSettings);
+document.getElementById("close-btn").onclick = function() { closeSettings(); hideDeckSizeNote() };
 difficultyButtons.getElementsByClassName('section-button')[0].onclick = function() { pickDifficulty(1)};
 difficultyButtons.getElementsByClassName('section-button')[1].onclick = function() { pickDifficulty(0)};
 difficultyButtons.getElementsByClassName('section-button')[2].onclick = function() { pickDifficulty(-1)};
@@ -464,14 +479,14 @@ document.getElementById('dark-slot').onclick = function() { updateTheme(1)}
 settingsDifficultySlots.getElementsByClassName('set-slot')[0].onclick = function() { updateDifficulty(1)};
 settingsDifficultySlots.getElementsByClassName('set-slot')[1].onclick = function() { updateDifficulty(0)};
 settingsDifficultySlots.getElementsByClassName('set-slot')[2].onclick = function() { updateDifficulty(-1)};
-settingsDeckSizeSlots.getElementsByClassName('set-slot')[0].onclick = function() { updateDeck(195)};
-settingsDeckSizeSlots.getElementsByClassName('set-slot')[1].onclick = function() { updateDeck(30)};
-settingsDeckSizeSlots.getElementsByClassName('set-slot')[2].onclick = function() { updateDeck(document.getElementById('settings-custom-deck').value)};
+settingsDeckSizeSlots.getElementsByClassName('set-slot')[0].onclick = function() { updateDeck(195); showDeckSizeNote()};
+settingsDeckSizeSlots.getElementsByClassName('set-slot')[1].onclick = function() { updateDeck(30); showDeckSizeNote() };
+settingsDeckSizeSlots.getElementsByClassName('set-slot')[2].onclick = function() { updateDeck(document.getElementById('settings-custom-deck').value); showDeckSizeNote()};
 
 
 
 // Pre-game init
-let deckQuantity = 40
+let deckQuantity = 10;
 let opScore = 0;
 let plScore = 0;
 let playerHand = [];
@@ -494,4 +509,5 @@ function playGame() {
   updateScoreboard();
   updateFlagImages();
   removeModal();
+  showMessage("Pick a card from above and guess");
 }

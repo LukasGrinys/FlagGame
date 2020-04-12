@@ -2,10 +2,22 @@
 <html>
 <head>
   <meta charset="utf-8" />
-    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Guess em"/>
-    <title>Flags</title>
+  <link rel="icon" href="/images/icon72x72.png"/>
+  <link rel="shortcut icon" href="/images/icon72x72.png">      
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Guess em"/>
+  <title>Flags</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="images/icon72x72.png" />
+  <link rel="apple-touch-icon" href="images/icon96x96.png" />
+  <link rel="apple-touch-icon" href="images/icon128x128.png" />
+  <link rel="apple-touch-icon" href="images/icon144x144.png" />
+  <link rel="apple-touch-icon" href="images/icon152x152.png" />
+  <link rel="apple-touch-icon" href="images/icon192x192.png" />
+  <link rel="apple-touch-icon" href="images/icon384x384.png" />
+  <link rel="apple-touch-icon" href="images/icon512x512.png" />
+  <meta name="apple-mobile-web-app-status-bar" content="#006080" />
+  <meta name="theme-color" content="#006080" />
   <link rel="stylesheet" type="text/css" href="style.css">
   <link href='https://fonts.googleapis.com/css?family=Archivo' rel='stylesheet'>
   <script src="countries.js" defer></script>
@@ -13,7 +25,6 @@
   <script src="autocomplete.js" defer></script>
 </head>
 <body>
-
   <div class="modal" id="modal">
     <div class="modal-text-container">
       <h1>Flag Game</h1>
@@ -71,9 +82,7 @@
       <img id="s5" class="slot" src="flags/00.png">
     </div>
     <div class="center">
-      <div id="center-message">
-        <div class="message">Pick a card from above and guess</div>
-      </div>
+      <div id="center-message"></div>
       <div id="cardsremaining">Cards remaining:</div>
     </div>
     <div class="playerSlots" id="playerSlots">
@@ -89,10 +98,8 @@
       </div>
       <button id="submit" disabled>Guess</button>
     </div>
-    <!-- <div class="check">
-      <p id="spelling"></p>
-    </div> -->
   </div>
+
   <div class="confirm-restart-modal" id="confirmRestart">
     <div class="question-box">
       <div class="question-box-header">Are you sure you want to restart?</div>
@@ -117,18 +124,16 @@
         <div class="set-slot">Hard</div>
       </div>
       <div class="settings-text">Change deck size:</div>
+      
       <div class="settings-default" id="deck-size-slots">
         <div class="set-slot">Full deck (195 cards)</div>
         <div class="set-slot">Short deck (30 cards)</div>
         <div class="set-slot">Custom
-          <input id="settings-custom-deck" max="195" min="10">
+          <input type="number" id="settings-custom-deck" max="195" min="10">
         </div>
       </div>
+      <div class="settings-text note">Restart is needed for deck size changes</div>
     </div>
   </div>
-
-  <!-- <div class="chat" id="chat">
-    <p id="chat-element"></p>
-  </div> -->
   </body>
 </html>
