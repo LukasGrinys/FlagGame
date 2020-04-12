@@ -1,7 +1,7 @@
 const staticFlags = "flag-game-v2";
 const assets = [
   "/",
-  "/gamewindow.html",
+  "/index.html",
   "/style.css",
   "/autocomplete.js",
   "/countries.js",

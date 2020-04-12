@@ -1,7 +1,7 @@
 {
     "name": "Flags",
     "short_name": "Flags",
-    "start_url": "gamewindow.html",
+    "start_url": "index.html",
     "display": "standalone",
     "background_color": "linear-gradient(to right, #006080, #00663d);",
     "theme_color": "#006080",
