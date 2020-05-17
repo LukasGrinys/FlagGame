@@ -526,7 +526,3 @@ function playGame() {
   removeModal();
   showMessage("Pick a card from above and guess");
 }
-
-window.addEventListener('load', (event) => {
-
-});
