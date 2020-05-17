@@ -2,7 +2,13 @@ if ("serviceWorker" in navigator) {
   window.addEventListener("load", function() {
     navigator.serviceWorker
       .register("/serviceworker.js")
-      .then(res => console.log("service worker registered"))
+      .then(res => { 
+        console.log("service worker registered");
+        loadingScreen.style.opacity = '0';
+        setTimeout( () => {
+          loadingScreen.style.display = 'none';
+        }, 500);
+      })
       .catch(err => console.log("service worker not registered", err))
   })
 }
@@ -522,8 +528,5 @@ function playGame() {
 }
 
 window.addEventListener('load', (event) => {
-  loadingScreen.style.opacity = '0';
-  setTimeout( () => {
-    loadingScreen.style.display = 'none';
-  }, 500)
+
 });
