@@ -211,7 +211,8 @@ const assets = [
   "/images/icon512x512.png",
   '/restart.png',
   "/settings.png",
-  '/scripts.js'
+  '/scripts.js',
+  '/logo.png'
 ]
 
 self.addEventListener("install", installEvent => {
