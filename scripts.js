@@ -7,6 +7,12 @@ if ("serviceWorker" in navigator) {
   })
 }
 
+// Load the assets
+for (let i = 0; i < countries.length; i++) {
+  let img = countries[i].source;
+  let e = document.createElement('img');
+  e.src = img;
+}
 // DOM Accessing
 const s1 = document.getElementById('s1'); 
 const s2 = document.getElementById('s2');
@@ -32,6 +38,8 @@ const settingsColorSlots = document.getElementById('color-slots');
 const settingsDifficultySlots = document.getElementById('difficulty-slots');
 const settingsDeckSizeSlots = document.getElementById('deck-size-slots');
 const deckSizeNote = document.getElementsByClassName('note')[0];
+const loadingScreen = document.getElementById('loading-modal');
+
 // GAME ENGINE
 function setDeck(deckQuantity) {
   while (arrNumbers.length > deckQuantity) {
@@ -81,6 +89,7 @@ function pickFlag(num) {
     answerInput.disabled = false;
     playerPickedCard = num;
     highlight(num);
+    answerInput.focus();
   }
 }
 
@@ -111,8 +120,8 @@ function guess() {
   playerPickedCard = 0;
   highlight();
   answerInput.value = "";
-  submitButton.disabled = "true";
-  answerInput.disabled = "true";
+  submitButton.disabled = true;
+  answerInput.disabled = true;
   opponentSlots.style.opacity = 0.25;
   playerSlots.style.opacity = 1;
   if (checkIfGameIsOver() === true) {
@@ -511,3 +520,10 @@ function playGame() {
   removeModal();
   showMessage("Pick a card from above and guess");
 }
+
+window.addEventListener('load', (event) => {
+  loadingScreen.style.opacity = '0';
+  setTimeout( () => {
+    loadingScreen.style.display = 'none';
+  }, 500)
+});

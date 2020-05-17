@@ -44,11 +44,38 @@ function autocomplete(inp, arr) {
         }
       }
   });
+  inp.addEventListener("keydown", function(e) {
+    var list = document.getElementById(this.id + "autocomplete-list");
+    if (list) {
+      x = list.getElementsByTagName("div");
+      if (e.keyCode === 40) {
+        currentFocus++;
+        addActive(x);
+      } else if (e.keyCode === 38) { 
+        currentFocus--;
+        addActive(x);
+      } else if (e.keyCode === 13) {
+        e.preventDefault();
+        if (currentFocus > -1) {
+          if (x) x[currentFocus].click();
+        }
+      }
+    } else {
+      if (e.keyCode === 13) {
+        guess();
+      }
+    }
+  });
   function addActive(x) {
-    if (!x) return false;
+    if (!x) {
+      return false;
+    }
     removeActive(x);
-    if (currentFocus >= x.length) currentFocus = 0;
-    if (currentFocus < 0) currentFocus = (x.length - 1);
+    if (currentFocus >= x.length) {
+      currentFocus = 0;
+    } else if (currentFocus < 0)  {
+      currentFocus = (x.length - 1);
+    } 
     x[currentFocus].classList.add("autocomplete-active");
   }
   function removeActive(x) {
@@ -56,10 +83,10 @@ function autocomplete(inp, arr) {
       x[i].classList.remove("autocomplete-active");
     }
   }
-  function closeAllLists(elmnt) {
+  function closeAllLists(element) {
     var x = document.getElementsByClassName("autocomplete-items");
     for (var i = 0; i < x.length; i++) {
-      if (elmnt != x[i] && elmnt != inp) {
+      if (element !== x[i] && element !== inp) {
       x[i].parentNode.removeChild(x[i]);
     }
   }
@@ -69,3 +96,4 @@ document.addEventListener("click", function (e) {
 });
 }
 autocomplete(document.getElementById("guess"), countryList);
+

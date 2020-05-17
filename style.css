@@ -479,8 +479,8 @@
 .autocomplete-items div:hover {
   background-color: #069;
 }
-.autocomplete-active {
-  background-color: #e6fff2;
+.autocomplete-items > .autocomplete-active {
+  background-color: #069;
 }
 
 .confirm-restart-modal {
@@ -527,10 +527,49 @@
   border-radius: 2px;
 }
 
+.loading-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 101;
+  background-image: linear-gradient(to right, #006080, #00663d);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+}
+.loading-logo {
+  width: 280px;
+  height: 180px;
+  height: auto;
+  opacity: 0;
+  animation: loadingLogoAppear 1s forwards ease-in-out;
+}
+.loading-text {
+  font-size: 1.25rem;
+  animation: loading 3s infinite;
+}
+
+
 @keyframes dissapear {
   0% { opacity: 1; transform: translateY(0)}
   80% { opacity: 1;  transform: translateX(0)}
   100% { opacity: 0;  transform: translateX(-800px)}
+}
+
+@keyframes loading {
+  0% { opacity: 0 }
+  50% { opacity: 1 }
+  100% { opacity: 0 }
+}
+
+@keyframes loadingLogoAppear {
+  0% { opacity: 0; transform: translateY(-40px) }
+  100% { opacity: 1; transform: translateY(0px) }
 }
 @media (max-width: 400px) {
   .slot {

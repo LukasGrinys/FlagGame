@@ -18,16 +18,21 @@
   <link rel="apple-touch-icon" href="images/icon512x512.png" />
   <meta name="apple-mobile-web-app-status-bar" content="#006080" />
   <meta name="theme-color" content="#006080" />
+  <link rel="preload" as="image" href="logo.png">
   <link rel="stylesheet" type="text/css" href="style.css">
   <link href='https://fonts.googleapis.com/css?family=Archivo' rel='stylesheet'>
-  <script src="countries.js" defer></script>
+  <script src="database.js" defer></script>
   <script src="scripts.js" defer></script>
   <script src="autocomplete.js" defer></script>
 </head>
 <body>
+  <div class="loading-modal" id="loading-modal">
+    <img src="logo.png" alt="Flags" class="loading-logo">
+    <div class="loading-text">Loading</div>
+  </div>
   <div class="modal" id="modal">
     <div class="modal-text-container">
-      <h1>Flag Game</h1>
+      <h1>Flags</h1>
       <div class="modal-rules">
         <div class="rules-header">Rules</div>
         <div class="rules-rule">Your goal is to guess more flags than computer</div>
@@ -52,7 +57,7 @@
           <div class="section-button">Short (30 cards)</div>
           <div class="section-custom">
             Custom
-            <input id="deck-size-input" type="number" max="195" min="10" onKeyDown="return false">
+            <input id="deck-size-input" type="number" max="195" min="10">
           </div>
         </div>
       <div class="modal-section">
