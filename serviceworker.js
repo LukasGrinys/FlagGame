@@ -4,7 +4,7 @@ const assets = [
   "/index.html",
   "/style.css",
   "/autocomplete.js",
-  "/countries.js",
+  "/database.js",
   "/flags/00.png",
   "/flags/01.png",
   "/flags/02.png",
