@@ -541,6 +541,7 @@
   flex-direction: column;
   transition-duration: 0.5s;
   -webkit-transition-duration: 0.5s;
+  display: none;
 }
 .loading-logo {
   width: 280px;

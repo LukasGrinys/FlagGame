@@ -4,10 +4,6 @@ if ("serviceWorker" in navigator) {
       .register("/serviceworker.js")
       .then(res => { 
         console.log("service worker registered");
-        loadingScreen.style.opacity = '0';
-        setTimeout( () => {
-          loadingScreen.style.display = 'none';
-        }, 500);
       })
       .catch(err => console.log("service worker not registered", err))
   })
@@ -526,3 +522,10 @@ function playGame() {
   removeModal();
   showMessage("Pick a card from above and guess");
 }
+
+closeLoadingScreen = () => {
+  loadingScreen.style.opacity = '0';
+  setTimeout( () => {
+    loadingScreen.style.display = 'none';
+  }, 500);
+};
