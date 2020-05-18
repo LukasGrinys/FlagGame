@@ -1,5 +1,6 @@
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function() {
+    closeLoadingScreen();
     navigator.serviceWorker
       .register("/serviceworker.js")
       .then(res => { 
