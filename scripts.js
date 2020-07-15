@@ -264,6 +264,7 @@ function showMessage(msg) {
 // SECOND TIER FUNCTIONS
 function restartGame() {
   showMessage("Restarting the game");
+  highlight();
   arrNumbers = [];
   for (let i = 1; i < countries.length; i++) {
     arrNumbers.push( i );
